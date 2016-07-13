@@ -1,15 +1,16 @@
 .regions
   %h1 Регионы
 
-  .col-md-2
-    .list
-      - @regions.each do |region|
-        .region
-          = link_to region.name, country_region_cities_path(country_id: params[:country_id], region_id: region.id)
+  .row
+    .col-md-2
+      .list
+        - @regions.each do |region|
+          .region
+            = link_to region.name, country_region_cities_path(country_id: params[:country_id], region_id: region.id)
 
-  .col-md-10
-    %div{:style => "width: 100%;"}
-      #map{:style => "width: 100%; height: 800px;"}
+    .col-md-10
+      %div{:style => "width: 100%;"}
+        #map{:style => "width: 100%; height: 800px;"}
 
 :javascript
   var myLatLng = {lat: parseFloat("#{@coordinates.latitude}"), lng: parseFloat("#{@coordinates.longitude}")};

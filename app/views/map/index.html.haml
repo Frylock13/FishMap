@@ -2,15 +2,15 @@
   #map{:style => "width: 100%; height: 800px;"}
 
 :javascript
-    var myLatLng = {lat: parseInt("#{@latitude}"), lng: parseInt("#{@longitude}")};
+    var currentLatLng = {lat: parseInt("#{@latitude}"), lng: parseInt("#{@longitude}")};
 
     var map = new google.maps.Map(document.getElementById('map'), {
       zoom: 4,
-      center: myLatLng
+      center: currentLatLng
     });
 
     var marker = new google.maps.Marker({
-      position: myLatLng,
+      position: currentLatLng,
       map: map,
       title: 'Hello World!'
     });
