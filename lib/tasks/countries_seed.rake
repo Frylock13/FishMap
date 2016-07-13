@@ -1,15 +1,14 @@
-namespace :locations do
+namespace :countries do
   desc "TODO"
-  task countries_seed: :environment do
+  task seed: :environment do
+    City.delete_all
+    Region.delete_all
     Country.delete_all
-    seed(0)
+    countries_seed(0)
   end
 
-  private
-
-  def seed(per_page)
-    service = Api::Vk::Countries::ListGetService.new(per_page)
-    countries = service.call
+  def countries_seed(per_page)
+    countries = Api::Vk::Countries::ListGetService.new(per_page).call
 
     unless countries.empty?
       countries.each do |country|
@@ -17,7 +16,7 @@ namespace :locations do
         puts "#{country.title} | Done!".light_blue
       end
 
-      seed(per_page + 100)
+      countries_seed(per_page + 100)
     else
       puts "All countries seeded!".green
     end

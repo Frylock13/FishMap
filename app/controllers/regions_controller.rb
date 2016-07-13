@@ -1,7 +1,6 @@
 class RegionsController < ApplicationController
 
   def index
-    service = Api::Vk::Regions::ListGetService.new(params[:country_id])
-    @regions = service.call
+    @regions = Region.where(country_id: params[:country_id])
   end
 end

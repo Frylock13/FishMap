@@ -4,4 +4,4 @@
   .list
     - @regions.each do |region|
       .region
-        = link_to region.title, country_region_cities_path(country_id: params[:country_id], region_id: region.region_id)
+        = link_to region.name, country_region_cities_path(country_id: params[:country_id], region_id: region.id)

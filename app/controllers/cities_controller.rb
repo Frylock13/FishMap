@@ -1,7 +1,6 @@
 class CitiesController < ApplicationController
 
   def index
-    service = Api::Vk::Cities::ListGetService.new(params[:country_id], params[:region_id])
-    @cities = service.call
+    @cities = City.where('country_id = ? AND region_id = ?', params[:country_id], params[:region_id])
   end
 end
