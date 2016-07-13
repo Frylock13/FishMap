@@ -2,6 +2,6 @@
   %h1 Регионы
 
   .list
-    - @regions.each do |r|
+    - @regions.each do |region|
       .region
-        = link_to r.title, country_region_cities_path(country_id: params[:country_id], region_id: r.region_id)
+        = link_to region.title, country_region_cities_path(country_id: params[:country_id], region_id: region.region_id)
