@@ -12,11 +12,11 @@
       #map{:style => "width: 100%; height: 800px;"}
 
 :javascript
-  var myLatLng = {lat: parseInt("#{@coordinates.latitude}"), lng: parseInt("#{@coordinates.longitude}")};
+  var myLatLng = {lat: parseFloat("#{@coordinates.latitude}"), lng: parseFloat("#{@coordinates.longitude}")};
   console.log(myLatLng)
 
   var map = new google.maps.Map(document.getElementById('map'), {
-    zoom: 4,
+    zoom: 9,
     center: myLatLng
   });
 
