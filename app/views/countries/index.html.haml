@@ -4,4 +4,4 @@
   .list
     - @countries.each do |country|
       .country
-        = link_to country.title, country_regions_path(country_id: country.cid)
+        = link_to country.name, country_regions_path(country_id: country.id)

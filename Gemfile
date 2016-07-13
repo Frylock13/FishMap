@@ -32,6 +32,7 @@ gem 'paperclip'
 gem 'draper'
 gem 'newrelic_rpm'
 gem 'vkontakte_api', '~> 1.4'
+gem 'colorize'
 
 # Use ActiveModel has_secure_password
 # gem 'bcrypt', '~> 3.1.7'

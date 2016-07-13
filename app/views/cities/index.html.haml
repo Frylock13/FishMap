@@ -2,7 +2,6 @@
   %h1 Нас. пункты
 
   .list
-    = @cities.count
     - @cities.each do |city|
       .region
         = link_to city.title, country_region_cities_path(country_id: params[:country_id], region_id: params[:region_id], city_id: city.cid)
