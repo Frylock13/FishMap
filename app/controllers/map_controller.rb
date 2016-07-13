@@ -1,7 +1,7 @@
 class MapController < ApplicationController
 
   def index
-    @longitude = 74.22
-    @latitude  = 39.22
+    @longitude = request.location.longitude
+    @latitude  = request.location.latitude
   end
 end
