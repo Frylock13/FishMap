@@ -11,10 +11,16 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20160713152715) do
+ActiveRecord::Schema.define(version: 20160713173038) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
+
+  create_table "categories", force: :cascade do |t|
+    t.string   "name"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+  end
 
   create_table "cities", force: :cascade do |t|
     t.string   "name"
@@ -34,9 +40,21 @@ ActiveRecord::Schema.define(version: 20160713152715) do
   end
 
   create_table "places", force: :cascade do |t|
-    t.datetime "created_at", null: false
-    t.datetime "updated_at", null: false
+    t.string   "title"
+    t.integer  "category_id"
+    t.integer  "city_id"
+    t.text     "address"
+    t.text     "description"
+    t.integer  "visits"
+    t.integer  "user_id"
+    t.float    "latitude"
+    t.float    "longitude"
+    t.datetime "created_at",  null: false
+    t.datetime "updated_at",  null: false
   end
+
+  add_index "places", ["category_id"], name: "index_places_on_category_id", using: :btree
+  add_index "places", ["city_id"], name: "index_places_on_city_id", using: :btree
 
   create_table "regions", force: :cascade do |t|
     t.string   "name"
@@ -49,5 +67,7 @@ ActiveRecord::Schema.define(version: 20160713152715) do
 
   add_foreign_key "cities", "countries"
   add_foreign_key "cities", "regions"
+  add_foreign_key "places", "categories"
+  add_foreign_key "places", "cities"
   add_foreign_key "regions", "countries"
 end

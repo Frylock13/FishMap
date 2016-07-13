@@ -16,11 +16,12 @@ namespace :regions do
     unless regions.empty?
       regions.each do |region|
         Region.create!(id: region.region_id, country_id: country_id, name: region.title)
-        puts "#{region.title} | Done!".light_blue
+        puts "#{region.title}".light_blue
+        sleep 0.1
       end
 
       regions_seed(country_id, country_name, per_page + 100)
-      sleep 10
+      sleep 3
     else
       puts "All regions of #{country_name} seeded!".green
     end

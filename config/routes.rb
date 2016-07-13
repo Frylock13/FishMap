@@ -1,5 +1,6 @@
 Rails.application.routes.draw do
 
+  resources :places
   get 'map/index'
 
   resources :places, only: [:show, :new, :create]

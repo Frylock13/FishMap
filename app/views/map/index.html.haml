@@ -1,2 +1,16 @@
-%h1 Map#index
-%p Find me in app/views/map/index.html.haml
+%div{:style => "width: 100%;"}
+  #map{:style => "width: 100%; height: 800px;"}
+
+:javascript
+    var myLatLng = {lat: parseInt("#{@latitude}"), lng: parseInt("#{@longitude}")};
+
+    var map = new google.maps.Map(document.getElementById('map'), {
+      zoom: 4,
+      center: myLatLng
+    });
+
+    var marker = new google.maps.Marker({
+      position: myLatLng,
+      map: map,
+      title: 'Hello World!'
+    });

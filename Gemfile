@@ -14,6 +14,7 @@ gem 'uglifier', '>= 1.3.0'
 
 # Use jquery as the JavaScript library
 gem 'jquery-rails'
+gem 'coffee-rails'
 # Turbolinks makes following links in your web application faster. Read more: https://github.com/rails/turbolinks
 gem 'turbolinks'
 # Build JSON APIs with ease. Read more: https://github.com/rails/jbuilder
@@ -33,6 +34,8 @@ gem 'draper'
 gem 'newrelic_rpm'
 gem 'vkontakte_api', '~> 1.4'
 gem 'colorize'
+gem 'geocoder'
+gem 'lodash-rails'
 
 # Use ActiveModel has_secure_password
 # gem 'bcrypt', '~> 3.1.7'

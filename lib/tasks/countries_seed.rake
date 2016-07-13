@@ -13,7 +13,7 @@ namespace :countries do
     unless countries.empty?
       countries.each do |country|
         Country.create!(id: country.cid, name: country.title)
-        puts "#{country.title} | Done!".light_blue
+        puts "#{country.title}".light_blue
       end
 
       countries_seed(per_page + 100)

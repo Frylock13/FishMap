@@ -18,10 +18,11 @@ namespace :cities do
       cities.each do |city|
         City.create!(id: city.cid, country_id: country_id, region_id: region_id, name: city.title)
         puts "#{city.title} | Done!".light_blue
+        sleep 0.1
       end
 
       cities_seed(country_id, country_name, region_id, region_name, per_page + 100)
-      sleep 10
+      sleep 3
     else
       puts "All cities of #{region_name} of #{country_name} seeded!".green
     end
