@@ -5,9 +5,9 @@ Rails.application.routes.draw do
   resources :places, only: [:show, :new, :create]
   root 'home#index'
 
-  resources :countries, only: [:index, :show] do 
-    resources :regions, only: [:index, :show] do
-      resources :cities, only: [:index, :show]
+  resources :countries, only: [:index] do 
+    resources :regions, only: [:index] do
+      resources :cities, only: [:index]
     end
   end
 

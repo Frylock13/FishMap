@@ -1,2 +1,7 @@
-%h1 Regions#index
-%p Find me in app/views/regions/index.html.haml
+.regions
+  %h1 Регионы
+
+  .list
+    - @regions.each do |r|
+      .region
+        = link_to r.title, country_region_cities_path(country_id: params[:country_id], region_id: r.region_id)

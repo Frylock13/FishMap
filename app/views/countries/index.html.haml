@@ -1,2 +1,7 @@
-%h1 Страны
-= @countries
+.countries
+  %h1 Страны
+  
+  .list
+    - @countries.each do |c|
+      .country
+        = link_to c.title, country_regions_path(country_id: c.cid)
