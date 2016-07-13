@@ -17,7 +17,7 @@ namespace :regions do
       regions.each do |region|
         Region.create!(id: region.region_id, country_id: country_id, name: region.title)
         puts "#{region.title}".light_blue
-        sleep 0.1
+        sleep 0.05
       end
 
       regions_seed(country_id, country_name, per_page + 100)

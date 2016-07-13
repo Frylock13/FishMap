@@ -17,8 +17,8 @@ namespace :cities do
     unless cities.empty?
       cities.each do |city|
         City.create!(id: city.cid, country_id: country_id, region_id: region_id, name: city.title)
-        puts "#{city.title} | Done!".light_blue
-        sleep 0.1
+        puts "#{city.title}".light_blue
+        sleep 0.05
       end
 
       cities_seed(country_id, country_name, region_id, region_name, per_page + 100)

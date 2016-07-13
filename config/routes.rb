@@ -8,7 +8,7 @@ Rails.application.routes.draw do
 
   resources :countries, only: [:index] do 
     resources :regions, only: [:index] do
-      resources :cities, only: [:index]
+      resources :cities, only: [:index, :show]
     end
   end
 

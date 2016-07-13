@@ -1,11 +1,8 @@
 .regions
-  %h1 Нас. пункты
+  %h1= @city.name
 
   .col-md-2
-    .list
-      - @cities.each do |city|
-        .region
-          = link_to city.name, country_region_city_path(country_id: params[:country_id], region_id: params[:region_id], id: city.id)
+    Places
 
   .col-md-10
     %div{:style => "width: 100%;"}
@@ -16,7 +13,7 @@
   console.log(myLatLng)
 
   var map = new google.maps.Map(document.getElementById('map'), {
-    zoom: 4,
+    zoom: 8,
     center: myLatLng
   });
 
