@@ -5,10 +5,10 @@
   #map{:style => "width: 100%; height: 800px;"}
 
 :javascript
-  var currentLatLng = {lat: parseInt("#{@latitude}"), lng: parseInt("#{@longitude}")};
+  var currentLatLng = {lat: parseFloat("#{@latitude}"), lng: parseFloat("#{@longitude}")};
 
   var map = new google.maps.Map(document.getElementById('map'), {
-    zoom: 4,
+    zoom: 8,
     center: currentLatLng
   });
   var geocoder = new google.maps.Geocoder();
