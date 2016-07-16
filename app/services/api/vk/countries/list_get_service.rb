@@ -8,7 +8,7 @@ module Api
         end
 
         def call
-          @client.database.getCountries(offset: per_page, need_all: 1)
+          @client.database.getCountries(offset: per_page)
         end
       end
     end
