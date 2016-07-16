@@ -13,16 +13,32 @@
         #map{:style => "width: 100%; height: 800px;"}
 
 :javascript
-  var myLatLng = {lat: parseFloat("#{@coordinates.latitude}"), lng: parseFloat("#{@coordinates.longitude}")};
-  console.log(myLatLng)
+  var markers = [
+    ['Bondi Beach', -34.6689476,150.8433923],
+    ['Coogee Beach', -34.6689470,150.8433923],
+    ['Cronulla Beach', -34.6689473,150.8433923],
+    ['Manly Beach', -34.6689471,150.8433923],
+    ['Maroubra Beach', -34.6689476,150.8433923]
+  ];
 
-  var map = new google.maps.Map(document.getElementById('map'), {
-    zoom: 6,
-    center: myLatLng
-  });
-
-  var marker = new google.maps.Marker({
-    position: myLatLng,
-    map: map,
-    title: 'Hello World!'
-  });
+  var currentLatLng = {lat: parseFloat("#{@coordinates.latitude}"), lng: parseFloat("#{@coordinates.longitude}")};
+  var myOptions = {
+    zoom: 7,
+    center: currentLatLng,
+    mapTypeId: google.maps.MapTypeId.ROADMAP,
+    mapTypeControl: false
+  };
+  var map = new google.maps.Map(document.getElementById("map"),myOptions);
+  var infowindow = new google.maps.InfoWindow(), marker, i;
+  for (i = 0; i < markers.length; i++) {  
+    marker = new google.maps.Marker({
+      position: new google.maps.LatLng(markers[i][1], markers[i][2]),
+      map: map
+    });
+    google.maps.event.addListener(marker, 'click', (function(marker, i) {
+      return function() {
+        infowindow.setContent(markers[i][0]);
+        infowindow.open(map, marker);
+      }
+    })(marker, i));
+  }

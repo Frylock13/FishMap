@@ -1,7 +1,7 @@
 class CitiesController < ApplicationController
 
   def index
-    @cities = City.where('country_id = ? AND region_id = ?', params[:country_id], params[:region_id])
+    @cities = City.where('country_id = ? AND region_id = ?', params[:country_id], params[:region_id]).order(:name)
     region = Region.find(params[:region_id])
     @coordinates = Map::GetCoordinatsByAddressService.new(region.name).call
   end
