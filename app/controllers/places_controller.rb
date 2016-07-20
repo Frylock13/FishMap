@@ -16,6 +16,7 @@ class PlacesController < ApplicationController
   # GET /places/new
   def new
     @place = Place.new
+    get_current_coordinates
   end
 
   # POST /places

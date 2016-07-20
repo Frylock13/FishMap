@@ -1,7 +1,6 @@
 class MapController < ApplicationController
 
   def index
-    @latitude  = request.location.latitude
-    @longitude = request.location.longitude
+    get_current_coordinates
   end
 end

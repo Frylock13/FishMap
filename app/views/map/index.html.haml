@@ -13,12 +13,6 @@
   });
   var geocoder = new google.maps.Geocoder();
 
-  var marker = new google.maps.Marker({
-    position: currentLatLng,
-    map: map,
-    title: 'Hello World!'
-  });
-
   document.getElementById('submit').addEventListener('click', function() {
     geocodeAddress(geocoder, map);
   });
@@ -38,13 +32,9 @@
     });
   }
 
-  var infowindow = new google.maps.InfoWindow(), marker, i;
-
   $.getJSON("http://localhost:3001/places", function(json1) {
       $.each(json1, function(key, data) {
           var latLng = new google.maps.LatLng(data.latitude, data.longitude);
-          console.log(data) 
-          // Creating a marker and putting it on the map
           var marker = new google.maps.Marker({
               position: latLng,
               map: map,
