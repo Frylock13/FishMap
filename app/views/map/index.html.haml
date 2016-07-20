@@ -19,14 +19,6 @@
     title: 'Hello World!'
   });
 
-  var markers = [
-    ['Bondi Beach', -33.890542, 151.274856],
-    ['Coogee Beach', -33.923036, 151.259052],
-    ['Cronulla Beach', -34.028249, 151.157507],
-    ['Manly Beach', -33.80010128657071, 151.28747820854187],
-    ['Maroubra Beach', -33.950198, 151.259302]
-  ];
-
   document.getElementById('submit').addEventListener('click', function() {
     geocodeAddress(geocoder, map);
   });
@@ -47,15 +39,16 @@
   }
 
   var infowindow = new google.maps.InfoWindow(), marker, i;
-  for (i = 0; i < markers.length; i++) {  
-    marker = new google.maps.Marker({
-      position: new google.maps.LatLng(markers[i][1], markers[i][2]),
-      map: map
-    });
-    google.maps.event.addListener(marker, 'click', (function(marker, i) {
-      return function() {
-        infowindow.setContent(markers[i][0]);
-        infowindow.open(map, marker);
-      }
-    })(marker, i));
-  }
+
+  $.getJSON("http://localhost:3001/places", function(json1) {
+      $.each(json1, function(key, data) {
+          var latLng = new google.maps.LatLng(data.latitude, data.longitude);
+          console.log(data) 
+          // Creating a marker and putting it on the map
+          var marker = new google.maps.Marker({
+              position: latLng,
+              map: map,
+              title: data.title
+          });
+      });
+  });

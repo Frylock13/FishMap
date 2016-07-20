@@ -36,6 +36,7 @@ gem 'vkontakte_api', '~> 1.4'
 gem 'colorize'
 gem 'geocoder'
 gem 'lodash-rails'
+gem 'gmaps4rails'
 
 # Use ActiveModel has_secure_password
 # gem 'bcrypt', '~> 3.1.7'
