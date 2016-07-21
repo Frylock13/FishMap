@@ -1,31 +1,46 @@
-= form_for @place do |f|
-  - if @place.errors.any?
-    #error_explanation
-      %h2= "#{pluralize(@place.errors.count, "error")} prohibited this place from being saved:"
-      %ul
-        - @place.errors.full_messages.each do |msg|
-          %li= msg
+.place-form
+  = bootstrap_form_for @place do |f|
+    - if @place.errors.any?
+      #error_explanation
+        %h2= "#{pluralize(@place.errors.count, "error")} prohibited this place from being saved:"
+        %ul
+          - @place.errors.full_messages.each do |msg|
+            %li= msg
 
-  %div{:style => "width: 100%;"}
-    #floating-panel
-      %input#address{:type => "textbox", :value => "Sydney, NSW"}
-        %input#submit{:type => "button", :value => "Найти"}
-    #map{:style => "width: 100%; height: 400px;"}
+    %div{:style => "width: 100%;"}
+      #floating-panel
+        %input#address{:type => "textbox", :value => "Sydney, NSW"}
+          %input#submit{:type => "button", :value => "Найти"}
+      #map{:style => "width: 100%; height: 400px;"}
 
-  .field
-    = f.label :title
-    = f.text_field :title
-  .field
-    = f.label :category
-    = f.text_field :category
-  .field
-    = f.label :address
-    = f.text_field :address
-  .field
-    = f.label :description
-    = f.text_area :description
-  .actions
-    = f.submit 'Save'
+    = f.text_field :title, label: 'Название места', required: true
+    = f.collection_select :category_id, @categories, :id, :name, label: 'Категория'
+    = f.text_field :address, label: 'Адрес', required: true
+    = f.text_area :description, label: 'Описание места'
+
+    %h4 Добавить фото
+    = f.file_field :image1, label: 'Фото 1'
+    = f.file_field :image2, label: 'Фото 2'
+    = f.file_field :image3, label: 'Фото 3'
+
+    %h4 Ваша оценка
+    %fieldset
+    %span.star-cb-group
+      %input#rating-5.rating{:name => "rating", :type => "radio", :value => "5"}/
+      %label{:for => "rating-5"} 5
+      %input#rating-4.rating{:checked => "checked", :name => "rating", :type => "radio", :value => "4"}/
+      %label{:for => "rating-4"} 4
+      %input#rating-3.rating{:name => "rating", :type => "radio", :value => "3"}/
+      %label{:for => "rating-3"} 3
+      %input#rating-2.rating{:name => "rating", :type => "radio", :value => "2"}/
+      %label{:for => "rating-2"} 2
+      %input#rating-1.rating{:name => "rating", :type => "radio", :value => "1"}/
+      %label{:for => "rating-1"} 1
+      %input#rating-0.rating.star-cb-clear{:name => "rating", :type => "radio", :value => "0"}/
+      %label{:for => "rating-0"} 0
+
+    .actions
+      = f.submit 'Добавить место', class: 'btn btn-success'
 
 
 :javascript

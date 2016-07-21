@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20160713173038) do
+ActiveRecord::Schema.define(version: 20160721020519) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -49,12 +49,43 @@ ActiveRecord::Schema.define(version: 20160713173038) do
     t.integer  "user_id"
     t.float    "latitude"
     t.float    "longitude"
-    t.datetime "created_at",  null: false
-    t.datetime "updated_at",  null: false
+    t.datetime "created_at",          null: false
+    t.datetime "updated_at",          null: false
+    t.string   "image1_file_name"
+    t.string   "image1_content_type"
+    t.integer  "image1_file_size"
+    t.datetime "image1_updated_at"
+    t.string   "image2_file_name"
+    t.string   "image2_content_type"
+    t.integer  "image2_file_size"
+    t.datetime "image2_updated_at"
+    t.string   "image3_file_name"
+    t.string   "image3_content_type"
+    t.integer  "image3_file_size"
+    t.datetime "image3_updated_at"
+    t.float    "rating"
   end
 
   add_index "places", ["category_id"], name: "index_places_on_category_id", using: :btree
   add_index "places", ["city_id"], name: "index_places_on_city_id", using: :btree
+
+  create_table "previews", force: :cascade do |t|
+    t.integer  "place_id"
+    t.integer  "rating"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+  end
+
+  add_index "previews", ["place_id"], name: "index_previews_on_place_id", using: :btree
+
+  create_table "ratings", force: :cascade do |t|
+    t.integer  "place_id"
+    t.integer  "rating"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+  end
+
+  add_index "ratings", ["place_id"], name: "index_ratings_on_place_id", using: :btree
 
   create_table "regions", force: :cascade do |t|
     t.string   "name"
@@ -65,9 +96,21 @@ ActiveRecord::Schema.define(version: 20160713173038) do
 
   add_index "regions", ["country_id"], name: "index_regions_on_country_id", using: :btree
 
+  create_table "reviews", force: :cascade do |t|
+    t.integer  "place_id"
+    t.integer  "rating"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+  end
+
+  add_index "reviews", ["place_id"], name: "index_reviews_on_place_id", using: :btree
+
   add_foreign_key "cities", "countries"
   add_foreign_key "cities", "regions"
   add_foreign_key "places", "categories"
   add_foreign_key "places", "cities"
+  add_foreign_key "previews", "places"
+  add_foreign_key "ratings", "places"
   add_foreign_key "regions", "countries"
+  add_foreign_key "reviews", "places"
 end

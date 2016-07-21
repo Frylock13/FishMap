@@ -1,36 +1,29 @@
 class PlacesController < ApplicationController
 
-  # GET /places
-  # GET /places.json
   def index
     @places = Place.all
     render json: @places
   end
 
-  # GET /places/1
-  # GET /places/1.json
   def show
     @place = Place.find(params[:id])
   end
 
-  # GET /places/new
   def new
     @place = Place.new
+    @categories = Category.all
     get_current_coordinates
   end
 
-  # POST /places
-  # POST /places.json
   def create
     @place = Place.new(place_params)
-    @place.save
-    redirect_to map_index_path
+    @place.save!
+    redirect_to place_path(@place.id)
   end
 
   private
 
-    # Never trust parameters from the scary internet, only allow the white list through.
     def place_params
-      params.require(:place).permit(:title, :category_id, :address, :description, :visits, :user_id, :latitude, :longitude)
+      params.require(:place).permit(:title, :category_id, :address, :description, :latitude, :longitude, :image1, :image2, :image3).merge(rating: params[:rating])
     end
 end
