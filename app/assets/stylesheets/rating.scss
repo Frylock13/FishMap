@@ -3,7 +3,7 @@
 $unchecked-star: '\2606';
 $unchecked-color: #888;
 $checked-star: '\2605';
-$checked-color: #e52;
+$checked-color: #F3CE3B;;
 
 .star-cb-group {
   /* remove inline-block whitespace */
@@ -35,7 +35,7 @@ $checked-color: #e52;
       & + label:hover ~ label:before,
       & + label:hover:before {
       content: $checked-star;
-      color: #e52;
+      color: #F3CE3B;
       text-shadow: 0 0 1px #333;
     }
   }

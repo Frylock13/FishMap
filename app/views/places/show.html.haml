@@ -1,30 +1,45 @@
-%p#notice= notice
+.place-show.white-block.container
+  .main-info
+    .col-md-6.left-block
+      %h1.title= @place.title
+      = image_tag "ratings/#{@place.rating.round}.png", class: 'rating'
+      = link_to @place.category.name, '', class: 'category'
+      %p.description= @place.description
+      = link_to 'Смотреть на карте', map_index_path, class: 'btn btn-success look-at-map'
 
-%p
-  %b Title:
-  = @place.title
-%p
-  %b Category:
-  = @place.category
-%p
-  %b Address:
-  = @place.address
-%p
-  %b Description:
-  = @place.description
-%p
-  %b Visits:
-  = @place.visits
-%p
-  %b User:
-  = @place.user_id
-%p
-  %b Latitude:
-  = @place.latitude
-%p
-  %b Longitude:
-  = @place.longitude
+      .share
+        .icon
+          .fb-share-button{"data-href" => "https://developers.facebook.com/docs/plugins/", "data-layout" => "button", "data-mobile-iframe" => "true", "data-size" => "small"}
+            %a.fb-xfbml-parse-ignore{:href => "https://www.facebook.com/sharer/sharer.php?u=https%3A%2F%2Fdevelopers.facebook.com%2Fdocs%2Fplugins%2F&src=sdkpreparse", :target => "_blank"} Поделиться
 
-= link_to 'Edit', edit_place_path(@place)
-\|
-= link_to 'Back', places_path
+        .icon
+          :javascript
+            document.write(VK.Share.button(false,{type: "round", text: "Поделиться"}));
+
+        .icon
+          .g-plus{"data-action" => "share", "data-annotation" => "none"}
+
+        .icon
+          %a.twitter-share-button{:href => "https://twitter.com/share"} Tweet
+
+    .col-md-6.right-block
+      .images
+        .image1
+          = image_tag @place.image1.url
+        .bottom-images.row
+          .image2.col-md-6
+            = image_tag @place.image2.url
+          .image3.col-md-6
+            = image_tag @place.image3.url
+
+:javascript
+  (function(d, s, id) {
+    var js, fjs = d.getElementsByTagName(s)[0];
+    if (d.getElementById(id)) return;
+    js = d.createElement(s); js.id = id;
+    js.src = "//connect.facebook.net/ru_RU/sdk.js#xfbml=1&version=v2.7&appId=1143419209026360";
+    fjs.parentNode.insertBefore(js, fjs);
+  }(document, 'script', 'facebook-jssdk'));
+
+:javascript
+  !function(d,s,id){var js,fjs=d.getElementsByTagName(s)[0],p=/^http:/.test(d.location)?'http':'https';if(!d.getElementById(id)){js=d.createElement(s);js.id=id;js.src=p+'://platform.twitter.com/widgets.js';fjs.parentNode.insertBefore(js,fjs);}}(document, 'script', 'twitter-wjs');
