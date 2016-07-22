@@ -18,4 +18,7 @@ class Place < ActiveRecord::Base
   validates_attachment_content_type :image3, content_type: /\Aimage\/.*\Z/
 
   validates :title, :address, presence: true
+
+  scope :active, -> { where(active: true) }
+  scope :not_active, -> { where(active: false) }
 end

@@ -38,6 +38,7 @@ gem 'geocoder'
 gem 'lodash-rails'
 gem 'gmaps4rails'
 gem 'bootstrap_form'
+gem 'activeadmin', github: 'activeadmin'
 
 # Use ActiveModel has_secure_password
 # gem 'bcrypt', '~> 3.1.7'
