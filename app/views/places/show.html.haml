@@ -1,5 +1,5 @@
-.place-show.white-block.container
-  .main-info
+.place-show.container
+  .main-info.white-block.row
     .col-md-6.left-block
       %h1.title= @place.title
       = image_tag "ratings/#{@place.rating.round}.png", class: 'rating'
@@ -22,15 +22,81 @@
         .icon
           %a.twitter-share-button{:href => "https://twitter.com/share"} Tweet
 
-    .col-md-6.right-block
-      .images
-        .image1
-          = image_tag @place.image1.url
-        .bottom-images.row
-          .image2.col-md-6
-            = image_tag @place.image2.url
-          .image3.col-md-6
-            = image_tag @place.image3.url
+    - if @place.image1.present? || @place.image2.present? || @place.image3.present?
+      .col-md-6.right-block
+        .images
+          .image1
+            = image_tag @place.image1.url
+          .bottom-images.row
+            .image2.col-md-6
+              = image_tag @place.image2.url
+            .image3.col-md-6
+              = image_tag @place.image3.url
+
+  .map-info.white-block.row
+    .col-md-12
+      %h2.title Карта места
+
+      .address
+        .left-block
+          %p
+            %strong Адрес:
+            = @place.address
+
+          %p
+            %strong Координаты:
+            = @place.coordinates
+
+        .right-block
+          %p
+            %strong Добавлено:
+            = @place.posted_at
+
+          %p
+            %strong Просмотры:
+            = @place.visits
+
+    %div{:style => "width: 100%;"}
+      #map.place-map{:style => "width: 100%; height: 800px;"}
+
+    .col-md-12
+      %h2.title Похожие места в этом районе:
+
+      - if @near_places.present?
+        .near-places
+          - @near_places.each do |place|
+            .place.col-md-3
+              = image_tag place.image1.url(:medium)
+              = image_tag "ratings/#{@place.rating.round}.png", class: 'rating'
+              .name
+                = link_to place.title, place_path(place.id)
+
+      - else
+        %p Нет мест поблизости 
+
+  .reviews.white-block.row
+    .col-md-12
+      %h2.title Отзывы
+
+
+:javascript
+
+  var currentLatLng = {lat: parseFloat("#{@place.latitude}"), lng: parseFloat("#{@place.longitude}")};
+  var myOptions = {
+    zoom: 10,
+    center: currentLatLng,
+    mapTypeId: google.maps.MapTypeId.ROADMAP,
+    mapTypeControl: false
+  };
+
+  var map = new google.maps.Map(document.getElementById("map"), myOptions);
+
+  var marker = new google.maps.Marker({
+    position: currentLatLng,
+    map: map,
+    title: 'Hello World!'
+  });
+
 
 :javascript
   (function(d, s, id) {

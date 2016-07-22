@@ -1,13 +1,12 @@
 class PlaceDecorator < Draper::Decorator
   delegate_all
 
-  # Define presentation-specific methods here. Helpers are accessed through
-  # `helpers` (aka `h`). You can override attributes, for example:
-  #
-  #   def created_at
-  #     helpers.content_tag :span, class: 'time' do
-  #       object.created_at.strftime("%a %m/%d/%y")
-  #     end
-  #   end
+  def coordinates
+    "#{latitude} #{longitude}"
+  end
 
+  def posted_at
+    author = user_id ? User.find(user_id).name : 'Гость'
+    "#{author} #{created_at.strftime('%d.%m.%Y %H:%M')}"
+  end
 end

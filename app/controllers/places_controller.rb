@@ -6,7 +6,9 @@ class PlacesController < ApplicationController
   end
 
   def show
-    @place = Place.find(params[:id])
+    @place = Place.find(params[:id]).decorate
+    @place.increment!(:visits)
+    @near_places = Place.near([@place.latitude, @place.longitude], 20)
   end
 
   def new

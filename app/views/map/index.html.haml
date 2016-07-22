@@ -32,7 +32,7 @@
     });
   }
 
-  $.getJSON("http://localhost:3001/places", function(json1) {
+  $.getJSON("/places", function(json1) {
       $.each(json1, function(key, data) {
           var latLng = new google.maps.LatLng(data.latitude, data.longitude);
           var marker = new google.maps.Marker({
