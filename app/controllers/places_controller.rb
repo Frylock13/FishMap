@@ -7,6 +7,7 @@ class PlacesController < ApplicationController
 
   def show
     @place = Place.find(params[:id]).decorate
+    @reviews = @place.reviews
     @place.increment!(:visits)
     @near_places = Place.near([@place.latitude, @place.longitude], 20)
   end
@@ -20,6 +21,7 @@ class PlacesController < ApplicationController
   def create
     @place = Place.new(place_params)
     @place.save!
+    flash[:success] = 'Место отправлено на модерацию'
     redirect_to place_path(@place.id)
   end
 

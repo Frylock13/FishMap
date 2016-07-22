@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20160722014754) do
+ActiveRecord::Schema.define(version: 20160722021845) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -69,15 +69,6 @@ ActiveRecord::Schema.define(version: 20160722014754) do
   add_index "places", ["category_id"], name: "index_places_on_category_id", using: :btree
   add_index "places", ["city_id"], name: "index_places_on_city_id", using: :btree
 
-  create_table "previews", force: :cascade do |t|
-    t.integer  "place_id"
-    t.integer  "rating"
-    t.datetime "created_at", null: false
-    t.datetime "updated_at", null: false
-  end
-
-  add_index "previews", ["place_id"], name: "index_previews_on_place_id", using: :btree
-
   create_table "ratings", force: :cascade do |t|
     t.integer  "place_id"
     t.integer  "rating"
@@ -98,7 +89,9 @@ ActiveRecord::Schema.define(version: 20160722014754) do
 
   create_table "reviews", force: :cascade do |t|
     t.integer  "place_id"
-    t.integer  "rating"
+    t.string   "name"
+    t.text     "review"
+    t.float    "rating"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
   end
@@ -109,7 +102,6 @@ ActiveRecord::Schema.define(version: 20160722014754) do
   add_foreign_key "cities", "regions"
   add_foreign_key "places", "categories"
   add_foreign_key "places", "cities"
-  add_foreign_key "previews", "places"
   add_foreign_key "ratings", "places"
   add_foreign_key "regions", "countries"
   add_foreign_key "reviews", "places"

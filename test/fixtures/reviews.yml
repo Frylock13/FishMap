@@ -2,8 +2,12 @@
 
 one:
   place_id: 
-  rating: 1
+  name: MyString
+  review: MyText
+  rating: 1.5
 
 two:
   place_id: 
-  rating: 1
+  name: MyString
+  review: MyText
+  rating: 1.5

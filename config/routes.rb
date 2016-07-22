@@ -1,9 +1,9 @@
 Rails.application.routes.draw do
 
-  resources :places
+  resources :reviews, only: :create
+  resources :places, only: [:index, :show, :new, :create]
   get 'map/index'
 
-  resources :places, only: [:show, :new, :create]
   root 'home#index'
 
   resources :countries, only: [:index] do 
