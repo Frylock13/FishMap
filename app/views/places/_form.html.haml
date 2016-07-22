@@ -10,10 +10,8 @@
             %li= msg
 
     %div{:style => "width: 100%;"}
-      #floating-panel
-        %input#address{:type => "textbox", :value => "Sydney, NSW"}
-          %input#submit{:type => "button", :value => "Найти"}
       #map{:style => "width: 100%; height: 400px;"}
+      = render 'shared/search_form'
 
     = f.text_field :title, label: 'Название места', required: true
     = f.collection_select :category_id, @categories, :id, :name, label: 'Категория'
