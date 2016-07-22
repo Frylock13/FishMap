@@ -58,14 +58,14 @@
             %strong Просмотры:
             = @place.visits
 
-    %div{:style => "width: 100%;"}
-      #map.place-map{:style => "width: 100%; height: 800px;"}
+      %div{:style => "width: 100%;"}
+        #map.place-map{:style => "width: 100%; height: 800px;"}
 
     .col-md-12
       %h2.title Похожие места в этом районе:
 
       - if @near_places.present?
-        .near-places
+        .near-places.row
           - @near_places.each do |place|
             - cache place do 
               .place.col-md-3
