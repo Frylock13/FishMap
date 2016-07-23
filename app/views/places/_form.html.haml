@@ -9,21 +9,29 @@
           - @place.errors.full_messages.each do |msg|
             %li= msg
 
+    %h4.sub-title Местоположение
     %div{:style => "width: 100%;"}
       #map{:style => "width: 100%; height: 400px;"}
       = render 'shared/search_form'
 
+    %hr/
+
+    %h4.sub-title Информация
     = f.text_field :title, label: 'Название места', required: true
     = f.collection_select :category_id, @categories, :id, :name, label: 'Категория'
     //= f.text_field :address, label: 'Адрес', required: true
     = f.text_area :description, label: 'Описание места'
 
-    %h4 Добавить фото
+    %hr/
+
+    %h4.sub-title Добавить фото
     = f.file_field :image1, label: 'Фото 1'
     = f.file_field :image2, label: 'Фото 2'
     = f.file_field :image3, label: 'Фото 3'
 
-    %h4 Ваша оценка
+    %hr/
+
+    %h4.sub-title Ваша оценка
     %fieldset
     %span.star-cb-group
       %input#rating-5.rating{:name => "rating", :type => "radio", :value => "5"}/
@@ -40,7 +48,7 @@
       %label{:for => "rating-0"} 0
 
     .actions
-      = f.submit 'Добавить место', class: 'btn btn-success'
+      = f.submit 'Добавить место', class: 'btn btn-success', id: 'create-place-button', disabled: true
 
 
 :javascript
@@ -85,9 +93,16 @@
     lat = marker.getPosition().lat();
     lng = marker.getPosition().lng();
     addHiddenFields(lat, lng);
+    activeSubmitButton();
   });
 
-  function addHiddenFields(lat, lng) { 
+  function addHiddenFields(lat, lng) {
+    $('input[type="hidden"][name="latitude"]').remove();
+    $('input[type="hidden"][name="longitude"]').remove();
     $('#new_place').append('<input type="hidden" name="latitude" value="' + lat + '" />');
     $('#new_place').append('<input type="hidden" name="longitude" value="' + lng + '" />');
+  }
+
+  function activeSubmitButton() {
+    $('#create-place-button').prop( "disabled", false );
   }

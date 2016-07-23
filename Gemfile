@@ -41,6 +41,7 @@ gem 'bootstrap_form'
 gem 'activeadmin', github: 'activeadmin'
 gem 'active_model_serializers', '~> 0.10.0'
 gem 'active_admin_theme'
+gem "font-awesome-rails"
 
 # Use ActiveModel has_secure_password
 # gem 'bcrypt', '~> 3.1.7'

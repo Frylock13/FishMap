@@ -2,8 +2,14 @@ Rails.application.routes.draw do
 
   devise_for :admin_users, ActiveAdmin::Devise.config
   ActiveAdmin.routes(self)
-  resources :reviews, only: :create
+
+  resources :reviews, only: :create do
+    put :like
+    put :dislike
+    put :complain
+  end
   resources :places, only: [:index, :show, :new, :create]
+
   get 'map/index'
 
   root 'map#index'

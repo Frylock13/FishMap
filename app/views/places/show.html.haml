@@ -1,3 +1,4 @@
+
 .place-show.container
   .main-info.white-block.row
     .col-md-6.left-block
@@ -10,8 +11,6 @@
         .icon
           .fb-share-button{"data-href" => "https://developers.facebook.com/docs/plugins/", "data-layout" => "button", "data-mobile-iframe" => "true", "data-size" => "small"}
             %a.fb-xfbml-parse-ignore{:href => "https://www.facebook.com/sharer/sharer.php?u=https%3A%2F%2Fdevelopers.facebook.com%2Fdocs%2Fplugins%2F&src=sdkpreparse", :target => "_blank"} Поделиться
-
-
 
         .icon
           .g-plus{"data-action" => "share", "data-annotation" => "none"}
@@ -94,6 +93,18 @@
                 = review.name
 
               %p.text= review.review
+              .actions
+                .like
+                  = link_to review_like_path(review_id: review.id), method: :put do
+                    = fa_icon 'thumbs-up 2x'
+                  = "(#{review.likes})"
+
+                .dislike
+                  = link_to review_dislike_path(review_id: review.id), method: :put do
+                    = fa_icon 'thumbs-down 2x'
+                  = "(#{review.dislikes})"
+                
+                = link_to 'Пожаловаться', review_complain_path(review_id: review.id), method: :put, class: 'btn btn-danger'
 
               %hr/
       - else
