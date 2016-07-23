@@ -1,6 +1,7 @@
 %div{style: "width: 100%;"}
   #map{style: "width: 100%; height: 800px;"}
   = render 'shared/search_form'
+  = render 'shared/map_filter'
 
 :javascript
   var currentLatLng = {lat: parseFloat("#{@latitude}"), lng: parseFloat("#{@longitude}")};
