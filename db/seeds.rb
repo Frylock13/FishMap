@@ -8,8 +8,8 @@
 Place.destroy_all
 Category.destroy_all
 
-Category.create(name: 'Болото', slug: 'swamp')
-Category.create(name: 'Озеро', slug: 'lake')
+Category.create!(name: 'Болото', slug: 'swamp', marker_image: File.new("#{Rails.root}/db/seeds/markers/lake.png"))
+Category.create!(name: 'Озеро', slug: 'lake', marker_image: File.new("#{Rails.root}/db/seeds/markers/swamp.png"))
 
 Place.create(title: 'Очень крутое место в Москве', 
              description: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, 
