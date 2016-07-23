@@ -47,7 +47,7 @@
   var currentLatLng = {lat: parseFloat("#{@latitude}"), lng: parseFloat("#{@longitude}")};
 
   var map = new google.maps.Map(document.getElementById('map'), {
-    zoom: 8,
+    zoom: 10,
     center: currentLatLng
   });
   var geocoder = new google.maps.Geocoder();
@@ -61,10 +61,6 @@
     geocoder.geocode({'address': address}, function(results, status) {
       if (status === google.maps.GeocoderStatus.OK) {
         resultsMap.setCenter(results[0].geometry.location);
-        var marker = new google.maps.Marker({
-          map: resultsMap,
-          position: results[0].geometry.location
-        });
       } else {
         alert('Geocode was not successful for the following reason: ' + status);
       }
@@ -72,18 +68,6 @@
   }
 
   var infowindow = new google.maps.InfoWindow(), marker, i;
-
-  $.getJSON("http://localhost:3001/places", function(json1) {
-      $.each(json1, function(key, data) {
-          var latLng = new google.maps.LatLng(data.latitude, data.longitude);
-          // Creating a marker and putting it on the map
-          var marker = new google.maps.Marker({
-              position: latLng,
-              map: map,
-              title: data.title
-          });
-      });
-  });
 
   function placeMarker(location) {
     if ( marker ) {
@@ -94,9 +78,16 @@
         map: map
       });
     }
-    console.log(marker.getPosition())
   }
 
   google.maps.event.addListener(map, 'click', function(event) {
     placeMarker(event.latLng);
+    lat = marker.getPosition().lat();
+    lng = marker.getPosition().lng();
+    performUrl(lat, lng);
   });
+
+  function performUrl(lat, lng) { 
+    window.location.search = 'latitude=lat';
+    window.location.search = 'longitude=lng';
+  }
