@@ -37,13 +37,14 @@
           var marker = new google.maps.Marker({
               position: latLng,
               map: map,
-              title: data.title
+              title: data.title,
+              icon: this.category.marker_image_url
           });
 
           var contentString = 
               '<div class="place-content">'+
                 '<h1 class="title">' + this.title + '</h1>'+
-                '<div class="rating">' + this.rating_image + '</div>' +
+                '<img src="' + this.rating_image_url + '" class="rating"/>' +
                 '<div id="bodyContent">'+
                   '<p>' + this.description + 
                 '</p>'+

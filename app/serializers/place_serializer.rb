@@ -1,9 +1,10 @@
 class PlaceSerializer < ActiveModel::Serializer
 
-  attributes :id, :title, :description, :latitude, :longitude, :reviews_count, :rating, :rating_image
+  attributes :id, :title, :description, :latitude, :longitude, :reviews_count, :rating, :rating_image_url
 
-  def rating_image
-    ActionController::Base.helpers.image_tag("ratings/#{object.rating.round}.png")
+  belongs_to :category
+
+  def rating_image_url
+    ActionController::Base.helpers.image_url("ratings/#{object.rating.round}.png")
   end
-
 end
