@@ -22,7 +22,8 @@
         resultsMap.setCenter(results[0].geometry.location);
         var marker = new google.maps.Marker({
           map: resultsMap,
-          position: results[0].geometry.location
+          position: results[0].geometry.location,
+          title: 'Hey'
         });
       } else {
         alert('Geocode was not successful for the following reason: ' + status);
@@ -37,6 +38,26 @@
               position: latLng,
               map: map,
               title: data.title
+          });
+
+          var contentString = 
+              '<div class="place-content">'+
+                '<h1 class="title">' + this.title + '</h1>'+
+                '<div class="rating">' + this.rating_image + '</div>' +
+                '<div id="bodyContent">'+
+                  '<p>' + this.description + 
+                '</p>'+
+                '<strong>Кол-во отзывов: </strong>' + this.reviews_count +
+                '<br/>' +
+                '<a href="places/' + this.id + '" class="btn btn-success info-button">Подробнее</a>' + 
+              '</div>';
+
+          var infowindow = new google.maps.InfoWindow({
+            content: contentString
+          });
+
+          marker.addListener('click', function() {
+            infowindow.open(map, marker);
           });
       });
   });

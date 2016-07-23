@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20160722031557) do
+ActiveRecord::Schema.define(version: 20160723004952) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -98,6 +98,7 @@ ActiveRecord::Schema.define(version: 20160722031557) do
     t.datetime "image3_updated_at"
     t.float    "rating",              default: 0.0
     t.boolean  "active",              default: false
+    t.integer  "reviews_count",       default: 0
   end
 
   add_index "places", ["category_id"], name: "index_places_on_category_id", using: :btree
