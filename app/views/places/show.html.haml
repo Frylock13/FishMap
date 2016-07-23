@@ -19,7 +19,7 @@
         %a.twitter-share-button{:href => "https://twitter.com/share"} Tweet
 
       .complain
-        = link_to 'Пожаловаться', complains_path(id: @place.id, type: 'Place'), method: :post, class: 'btn btn-danger'
+        = link_to 'Пожаловаться', complains_path(id: @place.id, type: 'Place'), method: :post
 
     - if @place.image1.present? || @place.image2.present? || @place.image3.present?
       .col-md-6.right-block
@@ -116,8 +116,8 @@
       .form
         %h2.title Добавить свой отзыв
         = bootstrap_form_for Review.new do |f|
-          = f.text_field :name, label: 'Имя', placeholder: 'Ваше имя', required: true
-          = f.text_area :review, label: 'Отзыв', placeholder: 'Ваш отзыв', required: true
+          = f.text_field :name, label: 'Имя', placeholder: 'Ваше имя'
+          = f.text_area :review, label: 'Отзыв', placeholder: 'Ваш отзыв'
           = f.hidden_field :place_id, value: params[:id]
 
           %h4 Ваша оценка

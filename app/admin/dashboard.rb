@@ -38,12 +38,12 @@ ActiveAdmin.register_page "Dashboard" do
             table_for Complain.places do
               column :id
 
-              column '' do |place|
-                link_to 'Перейти', place_path(place.complainable_id)
+              column '' do |complain|
+                link_to 'Перейти', admin_place_path(complain.complainable_id)
               end
 
-              column '' do |place|
-                link_to 'Удалить', admin_place_path(place.complainable_id), method: :delete
+              column '' do |complain|
+                link_to 'Удалить', admin_complain_path(complain.id), method: :delete
               end
             end
           end
@@ -55,12 +55,12 @@ ActiveAdmin.register_page "Dashboard" do
               column :id
               column 'Создано', :created_at
 
-              column '' do |review|
-                link_to 'Перейти', admin_review_path(review.complainable_id)
+              column '' do |complain|
+                link_to 'Перейти', admin_review_path(complain.complainable_id)
               end
 
-              column '' do |review|
-                link_to 'Удалить', admin_review_path(review.complainable_id), method: :delete
+              column '' do |complain|
+                link_to 'Удалить', admin_complain_path(complain.id), method: :delete
               end
             end
           end
