@@ -28,6 +28,6 @@ class PlacesController < ApplicationController
   private
 
     def place_params
-      params.require(:place).permit(:title, :category_id, :address, :description, :latitude, :longitude, :image1, :image2, :image3).merge(rating: params[:rating])
+      params.require(:place).permit(:title, :category_id, :address, :description, :image1, :image2, :image3).merge(rating: params[:rating], latitude: params[:latitude], longitude: params[:longitude] )
     end
 end

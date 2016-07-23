@@ -9,6 +9,7 @@ ActiveAdmin.register_page "Dashboard" do
           section do
             table_for Place.not_active.decorate do
               column :id
+              column 'Название', :title
               column 'Создан', :created_at
 
               column '' do |place|
@@ -19,6 +20,12 @@ ActiveAdmin.register_page "Dashboard" do
                 link_to 'Подтвердить', approve_admin_place_path(place.id),   
                                      method: :patch,
                                      confirm: 'Вы уверены, что хотите подтвердить место?'
+              end
+
+              column '' do |place|
+                link_to 'Отклонить', decline_admin_place_path(place.id),   
+                                     method: :delete,
+                                     confirm: 'Вы уверены, что хотите отклонить место?'
               end
             end
 

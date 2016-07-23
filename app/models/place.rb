@@ -6,7 +6,7 @@ class Place < ActiveRecord::Base
   has_many :reviews, dependent: :destroy
 
   geocoded_by :address   # can also be an IP address
-  after_validation :geocode
+  #after_validation :geocode
 
   has_attached_file :image1, styles: { small: "100x100", medium: "250x250>", large: "400x400", full: "100%" }, default_url: "places/missing.png"
   validates_attachment_content_type :image1, content_type: /\Aimage\/.*\Z/

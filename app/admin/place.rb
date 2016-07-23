@@ -17,4 +17,9 @@ ActiveAdmin.register Place do
     resource.update(active: true)
     redirect_to :back, notice: "Место подтвержено."
   end
+
+  member_action :decline, method: :delete do
+    resource.destroy!
+    redirect_to :back, notice: "Место отклонено."
+  end
 end

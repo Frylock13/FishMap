@@ -15,7 +15,7 @@
 
     = f.text_field :title, label: 'Название места', required: true
     = f.collection_select :category_id, @categories, :id, :name, label: 'Категория'
-    = f.text_field :address, label: 'Адрес', required: true
+    //= f.text_field :address, label: 'Адрес', required: true
     = f.text_area :description, label: 'Описание места'
 
     %h4 Добавить фото
@@ -84,10 +84,10 @@
     placeMarker(event.latLng);
     lat = marker.getPosition().lat();
     lng = marker.getPosition().lng();
-    performUrl(lat, lng);
+    addHiddenFields(lat, lng);
   });
 
-  function performUrl(lat, lng) { 
-    window.location.search = 'latitude=lat';
-    window.location.search = 'longitude=lng';
+  function addHiddenFields(lat, lng) { 
+    $('#new_place').append('<input type="hidden" name="latitude" value="' + lat + '" />');
+    $('#new_place').append('<input type="hidden" name="longitude" value="' + lng + '" />');
   }
