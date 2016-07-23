@@ -6,9 +6,9 @@ Rails.application.routes.draw do
   resources :reviews, only: :create do
     put :like
     put :dislike
-    put :complain
   end
   resources :places, only: [:index, :show, :new, :create]
+  resources :complains, only: :create
 
   get 'map/index'
 

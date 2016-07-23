@@ -32,6 +32,39 @@ ActiveAdmin.register_page "Dashboard" do
             strong { link_to "Посмотреть все места", admin_places_path }
           end
         end
+
+        panel "Жалобы на места" do
+          section do
+            table_for Complain.places do
+              column :id
+
+              column '' do |place|
+                link_to 'Перейти', place_path(place.complainable_id)
+              end
+
+              column '' do |place|
+                link_to 'Удалить', admin_place_path(place.complainable_id), method: :delete
+              end
+            end
+          end
+        end
+
+        panel "Жалобы на отзывы" do
+          section do
+            table_for Complain.reviews do
+              column :id
+              column 'Создано', :created_at
+
+              column '' do |review|
+                link_to 'Перейти', admin_review_path(review.complainable_id)
+              end
+
+              column '' do |review|
+                link_to 'Удалить', admin_review_path(review.complainable_id), method: :delete
+              end
+            end
+          end
+        end
       end
     end
   end

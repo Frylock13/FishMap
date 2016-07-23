@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20160723181551) do
+ActiveRecord::Schema.define(version: 20160723183813) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -73,6 +73,15 @@ ActiveRecord::Schema.define(version: 20160723181551) do
 
   add_index "cities", ["country_id"], name: "index_cities_on_country_id", using: :btree
   add_index "cities", ["region_id"], name: "index_cities_on_region_id", using: :btree
+
+  create_table "complains", force: :cascade do |t|
+    t.integer  "complainable_id"
+    t.string   "complainable_type"
+    t.datetime "created_at",        null: false
+    t.datetime "updated_at",        null: false
+  end
+
+  add_index "complains", ["complainable_type", "complainable_id"], name: "index_complains_on_complainable_type_and_complainable_id", using: :btree
 
   create_table "countries", force: :cascade do |t|
     t.string   "name"

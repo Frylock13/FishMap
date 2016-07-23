@@ -4,6 +4,7 @@ class Place < ActiveRecord::Base
   belongs_to :city
 
   has_many :reviews, dependent: :destroy
+  has_many :complains, as: :complainable, dependent: :destroy
 
   geocoded_by :address   # can also be an IP address
   #after_validation :geocode
