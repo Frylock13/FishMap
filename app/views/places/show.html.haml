@@ -141,7 +141,8 @@
   var marker = new google.maps.Marker({
     position: currentLatLng,
     map: map,
-    title: 'Hello World!'
+    title: 'Hello World!',
+    icon: "#{@place.category.marker_image_url}"
   });
 
 
