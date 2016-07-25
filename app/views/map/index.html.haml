@@ -42,12 +42,9 @@
     return decodeURIComponent(results[2].replace(/\+/g, " "));
   }
 
-  category_id = "#{params[:category_id]}";
-  reviews_count = "#{params[:reviews_count]}"
-  rating = "#{params[:rating]}"
-  console.log('category is ' + category_id);
-  console.log('reviews is ' + reviews_count);
-  console.log('rating is ' + rating);
+  category_id = getParameterByName('category_id')
+  reviews_count = getParameterByName('reviews_count')
+  rating = getParameterByName('rating')
 
   url_params = '/?'
   if(category_id != null) {

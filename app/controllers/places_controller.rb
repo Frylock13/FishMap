@@ -7,6 +7,8 @@ class PlacesController < ApplicationController
       @places = @places.public_send(key, value) if value.present?
     end
 
+    @c = params[:category_id]
+
     render json: @places
   end
 

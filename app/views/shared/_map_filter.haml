@@ -1,7 +1,15 @@
 #map-filter
-  = bootstrap_form_tag url: map_path, method: :get do |f|
-    = f.select :category_id, options_for_select(@categories.collect { |category| [category.name, category.id] }), label: 'Категория', include_blank: 'Все места'
-    = f.text_field :reviews_count, value: "#{params[:reviews_count] || 0}", label: 'Кол-во отзывов >=', class: 'form-control', placeholder: '10'
-    = f.text_field :rating, value: "#{params[:rating] || 0}", label: 'Рейтинг >=', class: 'form-control', placeholder: '4.9'
-    = f.submit 'Фильтровать', class: 'btn btn-primary'
+  = form_tag map_path, method: :get do
+    %p Категория
+    = select_tag :category_id, options_for_select(@categories.collect { |category| [category.name, category.id] }, params[:category_id]), class: 'form-control', include_blank: 'Все места'
+    %br/
 
+    %p Кол-во отзывов >=
+    = text_field_tag :reviews_count, nil, value: "#{params[:reviews_count] || 0}", class: 'form-control', placeholder: '10'
+    %br/
+
+    %p Рейтинг >=
+    = text_field_tag :rating, nil, value: "#{params[:rating] || 0}", class: 'form-control', placeholder: '4.9'
+    %br/
+
+    = submit_tag 'Фильтровать', class: 'btn btn-primary'
