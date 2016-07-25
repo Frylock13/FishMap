@@ -32,7 +32,38 @@
     });
   }
 
-  $.getJSON("/places", function(json1) {
+  function getParameterByName(name, url) {
+    if (!url) url = window.location.href;
+    name = name.replace(/[\[\]]/g, "\\$&");
+    var regex = new RegExp("[?&]" + name + "(=([^&#]*)|&|#|$)"),
+        results = regex.exec(url);
+    if (!results) return null;
+    if (!results[2]) return '';
+    return decodeURIComponent(results[2].replace(/\+/g, " "));
+  }
+
+  category_id = "#{params[:category_id]}";
+  reviews_count = "#{params[:reviews_count]}"
+  rating = "#{params[:rating]}"
+  console.log('category is ' + category_id);
+  console.log('reviews is ' + reviews_count);
+  console.log('rating is ' + rating);
+
+  url_params = '/?'
+  if(category_id != null) {
+    url_params = url_params.concat('&category_id=' + category_id)
+  }
+  if(reviews_count != null) {
+    url_params = url_params.concat('&reviews_count=' + reviews_count)
+  }
+  if(rating != null) {
+    url_params = url_params.concat('&rating=' + rating)
+  }
+
+  console.log(url_params);
+
+
+  $.getJSON("/places" + url_params, function(json1) {
     $.each(json1, function(key, data) {
       var latLng = new google.maps.LatLng(data.latitude, data.longitude);
       var marker = new google.maps.Marker({

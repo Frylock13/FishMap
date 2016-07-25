@@ -10,7 +10,7 @@ Rails.application.routes.draw do
   resources :places, only: [:index, :show, :new, :create]
   resources :complains, only: :create
 
-  get 'map/index'
+  get '/' => 'map#index', as: 'map'
 
   root 'map#index'
 

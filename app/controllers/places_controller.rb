@@ -1,7 +1,12 @@
 class PlacesController < ApplicationController
 
   def index
-    @places = Place.active
+    @places = Place.where(nil)
+
+    filtering_params(params).each do |key, value|
+      @places = @places.public_send(key, value) if value.present?
+    end
+
     render json: @places
   end
 
@@ -29,5 +34,9 @@ class PlacesController < ApplicationController
 
     def place_params
       params.require(:place).permit(:title, :category_id, :address, :description, :image1, :image2, :image3).merge(rating: params[:rating], latitude: params[:latitude], longitude: params[:longitude] )
+    end
+
+    def filtering_params(params)
+      params.slice(:category_id, :reviews_count, :rating)
     end
 end

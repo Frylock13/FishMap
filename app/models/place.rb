@@ -22,4 +22,7 @@ class Place < ActiveRecord::Base
 
   scope :active, -> { where(active: true) }
   scope :not_active, -> { where(active: false) }
+  scope :category_id, -> (category_id) { where(category_id: category_id) }
+  scope :reviews_count, -> (reviews_count) { where('reviews_count >= ?', reviews_count) }
+  scope :rating, -> (rating) { where('rating >= ?', rating) }
 end
