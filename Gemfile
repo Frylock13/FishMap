@@ -21,8 +21,6 @@ gem 'turbolinks'
 gem 'jbuilder', '~> 2.0'
 # bundle exec rake doc:rails generates the API under doc/api.
 gem 'sdoc', '~> 0.4.0', group: :doc
-gem 'devise'
-gem 'acts_as_tree'
 gem 'rails-observers'
 gem "haml-rails", "~> 0.9"
 gem 'bootstrap-sass', '~> 3.3.6'
@@ -31,17 +29,20 @@ gem 'quiet_assets'
 gem 'awesome_print'
 gem 'paperclip'
 gem 'draper'
-gem 'newrelic_rpm'
 gem 'vkontakte_api', '~> 1.4'
 gem 'colorize'
 gem 'geocoder'
-gem 'lodash-rails'
-gem 'gmaps4rails'
 gem 'bootstrap_form'
 gem 'activeadmin', github: 'activeadmin'
 gem 'active_model_serializers', '~> 0.10.0'
 gem 'active_admin_theme'
 gem "font-awesome-rails"
+gem 'rack-mini-profiler'
+
+gem 'devise'
+gem 'omniauth'
+gem 'omniauth-facebook'
+gem 'omniauth-vkontakte'
 
 # Use ActiveModel has_secure_password
 # gem 'bcrypt', '~> 3.1.7'

@@ -19,7 +19,10 @@
 <% end -%>
 
 <%- if devise_mapping.omniauthable? %>
+  <p>Войти с помощью соц. сетей:</p>
   <%- resource_class.omniauth_providers.each do |provider| %>
-    <%= link_to "Войти с помощью #{OmniAuth::Utils.camelize(provider)}", omniauth_authorize_path(resource_name, provider) %><br />
+    <%= link_to omniauth_authorize_path(resource_name, provider) do %>
+      <%= image_tag "#{OmniAuth::Utils.camelize(provider)}.png" %>
+    <% end %>
   <% end -%>
 <% end -%>
