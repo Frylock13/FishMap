@@ -15,3 +15,8 @@
           %li= link_to 'Карта', map_path
           //%li= link_to 'Места', countries_path
           %li= link_to 'Добавить место +', new_place_path
+
+          - if current_user
+            %li= link_to 'Выйти', destroy_user_session_path, method: :delete
+          - else
+            %li= link_to 'Войти/Регистрация', new_user_session_path
