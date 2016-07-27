@@ -14,11 +14,11 @@ class PlaceDecorator < Draper::Decorator
     created_at.strftime('%d.%m.%Y %H:%M')
   end
 
-  def get_place_background
+  def get_near_place_background
     if object.place_images.first.present?
-      h.image_tag(object.place_images.first.image.url(:small))
+      h.image_tag(object.place_images.first.image.url(:small), class: 'center')
     else
-      h.image_tag 'places/missing.png'
+      h.image_tag 'places/near_missing.png', class: 'center'
     end
   end
 end
