@@ -73,10 +73,9 @@
                   = review.decorate.posted_info
                 = image_tag "ratings/#{@place.rating.round}.png", class: 'rating'
 
-              .user-name
-                = review.name
+              - if review.review
+                %p.text= review.review
 
-              %p.text= review.review
               .actions
                 .like
                   = link_to review_like_path(review_id: review.id), method: :put do
@@ -99,7 +98,7 @@
         %h2.title Добавить свой отзыв
         = bootstrap_form_for Review.new do |f|
           - unless current_user
-            = f.text_field :name, label: 'Имя', placeholder: 'Ваше имя'
+            = f.text_field :name, label: 'Имя', placeholder: 'Ваше имя', required: true
 
           = f.text_area :review, label: 'Отзыв', placeholder: 'Ваш отзыв'
           = f.hidden_field :place_id, value: params[:id]
