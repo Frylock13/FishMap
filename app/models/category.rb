@@ -8,10 +8,6 @@ class Category < ActiveRecord::Base
   validates_attachment_content_type :marker_image, content_type: /\Aimage\/.*\Z/
 
   def marker_image_url
-    if self.marker_image.present?
-      ActionController::Base.helpers.image_url(self.marker_image.url(:small))
-    else
-      ActionController::Base.helpers.image_url('places/default_marker.png')
-    end
+    ActionController::Base.helpers.image_url(self.marker_image.url(:small))
   end
 end
