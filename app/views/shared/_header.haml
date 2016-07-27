@@ -12,11 +12,23 @@
       / Collect the nav links, forms, and other content for toggling
       #bs-example-navbar-collapse-1.collapse.navbar-collapse
         %ul.nav.navbar-nav
-          %li= link_to 'Карта', map_path
+          %li
+            = link_to map_path do
+              Карта
+              = fa_icon 'globe'
           //%li= link_to 'Места', countries_path
-          %li= link_to 'Добавить место +', new_place_path
+          %li
+            = link_to new_place_path do
+              Добавить место
+              = fa_icon 'plus-circle'
 
           - if current_user
-            %li= link_to 'Выйти', destroy_user_session_path, method: :delete
+            %li
+              = link_to destroy_user_session_path, method: :delete do
+                Выйти
+                = fa_icon 'sign-out'
           - else
-            %li= link_to 'Войти/Регистрация', new_user_session_path
+            %li
+              = link_to new_user_session_path do
+                Войти/Регистрация
+                = fa_icon 'sign-in'
