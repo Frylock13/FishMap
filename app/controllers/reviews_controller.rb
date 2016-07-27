@@ -22,7 +22,7 @@ class ReviewsController < ApplicationController
       review = Review.find(params[:review_id])
       review.increment!(:likes)
       session[:likes] << review.id
-      flash[:success] = 'Вы успешно лайкнули отзыв'
+      flash[:success] = 'Вы успешно оценили отзыв'
     end
 
     redirect_to :back
@@ -37,7 +37,7 @@ class ReviewsController < ApplicationController
       review = Review.find(params[:review_id])
       review.increment!(:dislikes)
       session[:dislikes] << review.id
-      flash[:success] = 'Вы успешно дизлайкнули отзыв'
+      flash[:success] = 'Вы успешно оценили отзыв'
     end
 
     redirect_to :back
