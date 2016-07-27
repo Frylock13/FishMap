@@ -5,6 +5,7 @@
 
 :javascript
   var currentLatLng = {lat: parseFloat("#{@latitude}"), lng: parseFloat("#{@longitude}")};
+  var infoWindows = [];
 
   var map = new google.maps.Map(document.getElementById('map'), {
     zoom: 8,
@@ -88,7 +89,15 @@
       });
 
       marker.addListener('click', function() {
+        closeAllInfoWindows();
+        infoWindows.push(infowindow); 
         infowindow.open(map, marker);
       });
+
+      function closeAllInfoWindows() {
+        for (var i=0;i<infoWindows.length;i++) {
+           infoWindows[i].close();
+        }
+      }
     });
   });
