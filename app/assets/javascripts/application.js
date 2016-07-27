@@ -16,4 +16,5 @@
 //= require cocoon
 //= require social-share-button
 //= require turbolinks
+//= require smooth
 //= require_tree .

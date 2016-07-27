@@ -14,9 +14,15 @@
         = link_to 'Пожаловаться', complains_path(id: @place.id, type: 'Place'), method: :post
 
     .col-md-6.right-block
-      .images
-        - @place.place_images.each do |image|
-          = image_tag image.image.url(:small)
+
+      - if @place.place_images[0].image.present?
+        .sp-wrap
+          %a{:href => "#{@place.place_images[0].image.url(:original)}"}
+            %img{:alt => "", :src => "#{@place.place_images[0].image.url(:small)}"}/
+
+          - if @place.place_images[1].present?
+            - @place.place_images[1..-1].each do |image|
+              = link_to image_tag(image.image.url(:small)), image.image.url
 
   .map-info.white-block.row
     .col-md-12
@@ -142,16 +148,7 @@
     icon: "#{@place.category.marker_image_url}"
   });
 
-
 :javascript
-  (function(d, s, id) {
-    var js, fjs = d.getElementsByTagName(s)[0];
-    if (d.getElementById(id)) return;
-    js = d.createElement(s); js.id = id;
-    js.async=true;  
-    js.src = "//connect.facebook.net/ru_RU/sdk.js#xfbml=1&version=v2.7&appId=1143419209026360";
-    fjs.parentNode.insertBefore(js, fjs);
-  }(document, 'script', 'facebook-jssdk'));
-
-:javascript
-  !function(d,s,id){var js,fjs=d.getElementsByTagName(s)[0],p=/^http:/.test(d.location)?'http':'https';if(!d.getElementById(id)){js=d.createElement(s);js.id=id;js.src=p+'://platform.twitter.com/widgets.js';fjs.parentNode.insertBefore(js,fjs);}}(document, 'script', 'twitter-wjs');
+  $(window).load( function() {
+    $('.sp-wrap').smoothproducts();
+  });

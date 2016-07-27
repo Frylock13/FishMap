@@ -1,7 +1,7 @@
 class PlacesController < ApplicationController
 
   def index
-    @places = Place.where(nil)
+    @places = Place.where(nil).includes(:category)
     filtering_params(params).each do |key, value|
       @places = @places.public_send(key, value) if value.present?
     end

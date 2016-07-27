@@ -7,7 +7,7 @@ class User < ActiveRecord::Base
 
   validates :name, presence: true
 
-  has_many :places
+  has_many :places, dependent: :destroy
   has_many :reviews
 
   def self.from_omniauth(auth)
