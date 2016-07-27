@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20160726232144) do
+ActiveRecord::Schema.define(version: 20160727013551) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -125,23 +125,11 @@ ActiveRecord::Schema.define(version: 20160726232144) do
     t.integer  "user_id"
     t.float    "latitude"
     t.float    "longitude"
-    t.datetime "created_at",                          null: false
-    t.datetime "updated_at",                          null: false
-    t.string   "image1_file_name"
-    t.string   "image1_content_type"
-    t.integer  "image1_file_size"
-    t.datetime "image1_updated_at"
-    t.string   "image2_file_name"
-    t.string   "image2_content_type"
-    t.integer  "image2_file_size"
-    t.datetime "image2_updated_at"
-    t.string   "image3_file_name"
-    t.string   "image3_content_type"
-    t.integer  "image3_file_size"
-    t.datetime "image3_updated_at"
-    t.float    "rating",              default: 0.0
-    t.boolean  "active",              default: false
-    t.integer  "reviews_count",       default: 0
+    t.datetime "created_at",                    null: false
+    t.datetime "updated_at",                    null: false
+    t.float    "rating",        default: 0.0
+    t.boolean  "active",        default: false
+    t.integer  "reviews_count", default: 0
   end
 
   add_index "places", ["category_id"], name: "index_places_on_category_id", using: :btree
