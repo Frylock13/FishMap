@@ -3,6 +3,6 @@ class ReviewDecorator < Draper::Decorator
 
   def posted_info
     author = name ? name : User.find(user_id).name
-    "#{author} (#{created_at.strftime('%d.%m.%Y %H:%M')})"
+    "#{author} (#{created_at.localtime.strftime('%d.%m.%Y %H:%M')})"
   end
 end
