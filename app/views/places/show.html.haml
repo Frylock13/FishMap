@@ -8,15 +8,7 @@
       %p.description= @place.description
 
       .share
-        .icon
-          .fb-share-button{"data-href" => "https://developers.facebook.com/docs/plugins/", "data-layout" => "button", "data-mobile-iframe" => "true", "data-size" => "small"}
-            %a.fb-xfbml-parse-ignore{:href => "https://www.facebook.com/sharer/sharer.php?u=https%3A%2F%2Fdevelopers.facebook.com%2Fdocs%2Fplugins%2F&src=sdkpreparse", :target => "_blank"} Поделиться
-
-        .icon
-          .g-plus{"data-action" => "share", "data-annotation" => "none"}
-
-      .icon
-        %a.twitter-share-button{:href => "https://twitter.com/share"} Tweet
+        = social_share_button_tag(@place.title)
 
       .complain
         = link_to 'Пожаловаться', complains_path(id: @place.id, type: 'Place'), method: :post
@@ -107,7 +99,8 @@
                     = fa_icon 'thumbs-down 2x'
                   = "(#{review.dislikes})"
                 
-                = link_to 'Пожаловаться', complains_path(id: review.id, type: 'Review'), method: :post, class: 'btn btn-danger'
+                .complain
+                  = link_to 'Пожаловаться', complains_path(id: review.id, type: 'Review'), method: :post
 
               %hr/
       - else
@@ -165,6 +158,7 @@
     var js, fjs = d.getElementsByTagName(s)[0];
     if (d.getElementById(id)) return;
     js = d.createElement(s); js.id = id;
+    js.async=true;  
     js.src = "//connect.facebook.net/ru_RU/sdk.js#xfbml=1&version=v2.7&appId=1143419209026360";
     fjs.parentNode.insertBefore(js, fjs);
   }(document, 'script', 'facebook-jssdk'));
