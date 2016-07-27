@@ -5,9 +5,11 @@ class Place < ActiveRecord::Base
 
   has_many :reviews, dependent: :destroy
   has_many :complains, as: :complainable, dependent: :destroy
+  has_many :place_images, dependent: :destroy
 
-  geocoded_by :address   # can also be an IP address
-  #after_validation :geocode
+  accepts_nested_attributes_for :place_images, :allow_destroy => true
+
+  geocoded_by :address
 
   has_attached_file :image1, styles: { small: "100x100", medium: "250x250>", large: "400x400", full: "100%" }, default_url: "places/missing.png"
   validates_attachment_content_type :image1, content_type: /\Aimage\/.*\Z/

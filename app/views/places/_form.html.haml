@@ -1,7 +1,7 @@
 .place-form.white-block
   %h1 Добавить свое место
 
-  = bootstrap_form_for @place do |f|
+  = bootstrap_form_for @place, html: { multipart: true } do |f|
     - if @place.errors.any?
       #error_explanation
         %h2= "#{pluralize(@place.errors.count, "error")} prohibited this place from being saved:"
@@ -24,9 +24,10 @@
     %hr/
 
     %h4.sub-title Добавить фото
-    = f.file_field :image1, label: 'Фото 1'
-    = f.file_field :image2, label: 'Фото 2'
-    = f.file_field :image3, label: 'Фото 3'
+    #place_images
+      = f.fields_for :place_images, PlaceImage.new do |image|
+        = render 'place_image_fields', f: image
+        = link_to_add_association 'Добавить еще одно фото', f, :place_images
 
     %hr/
 

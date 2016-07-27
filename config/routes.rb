@@ -8,7 +8,9 @@ Rails.application.routes.draw do
     put :like
     put :dislike
   end
-  resources :places, only: [:index, :show, :new, :create]
+  resources :places, only: [:index, :show, :new, :create] do
+    resources :place_images
+  end
   resources :complains, only: :create
 
   get '/' => 'map#index', as: 'map'
