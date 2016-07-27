@@ -25,8 +25,8 @@
       .address
         .left-block
           %p
-            %strong Адрес:
-            = @place.address
+            %strong Добавил:
+            = @place.posted_by
 
           %p
             %strong Координаты:
@@ -35,7 +35,7 @@
         .right-block
           %p
             %strong Добавлено:
-            = @place.posted_info
+            = @place.posted_at
 
           %p
             %strong Просмотры:
@@ -52,13 +52,13 @@
           - @near_places.each do |place|
             - cache place do 
               .place.col-md-3
-                = image_tag place.place_images.first.image.url(:small)
+                = place.decorate.get_place_background 
                 = image_tag "ratings/#{@place.rating.round}.png", class: 'rating'
                 .name
                   = link_to place.title, place_path(place.id)
 
       - else
-        %p Нет мест поблизости 
+        %p Нет похожих мест поблизости 
 
   .reviews.white-block.row
     .col-md-12
@@ -71,7 +71,6 @@
               .date
                 .review
                   = review.decorate.posted_info
-                  = review.created_at.strftime('%d.%m.%Y')
                 = image_tag "ratings/#{@place.rating.round}.png", class: 'rating'
 
               .user-name
