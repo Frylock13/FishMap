@@ -13,21 +13,10 @@
       .complain
         = link_to 'Пожаловаться', complains_path(id: @place.id, type: 'Place'), method: :post
 
-    - if @place.image1.present? || @place.image2.present? || @place.image3.present?
-      .col-md-6.right-block
-        .images
-          - if @place.image1.present?
-            .image1
-              = image_tag @place.image1.url
-
-          .bottom-images.row
-            - if @place.image2.present?
-              .image2.col-md-6
-                = image_tag @place.image2.url
-
-            - if @place.image3.present?
-              .image3.col-md-6
-                = image_tag @place.image3.url
+    .col-md-6.right-block
+      .images
+        - @place.place_images.each do |image|
+          = image_tag image.image.url(:small)
 
   .map-info.white-block.row
     .col-md-12
@@ -46,7 +35,7 @@
         .right-block
           %p
             %strong Добавлено:
-            = @place.posted_at
+            = @place.posted_info
 
           %p
             %strong Просмотры:
@@ -63,7 +52,7 @@
           - @near_places.each do |place|
             - cache place do 
               .place.col-md-3
-                = image_tag place.image1.url(:medium)
+                = image_tag place.place_images.first.image.url(:small)
                 = image_tag "ratings/#{@place.rating.round}.png", class: 'rating'
                 .name
                   = link_to place.title, place_path(place.id)
@@ -81,6 +70,7 @@
             - cache review do
               .date
                 .review
+                  = review.decorate.posted_info
                   = review.created_at.strftime('%d.%m.%Y')
                 = image_tag "ratings/#{@place.rating.round}.png", class: 'rating'
 
@@ -109,7 +99,9 @@
       .form
         %h2.title Добавить свой отзыв
         = bootstrap_form_for Review.new do |f|
-          = f.text_field :name, label: 'Имя', placeholder: 'Ваше имя'
+          - unless current_user
+            = f.text_field :name, label: 'Имя', placeholder: 'Ваше имя'
+
           = f.text_area :review, label: 'Отзыв', placeholder: 'Ваш отзыв'
           = f.hidden_field :place_id, value: params[:id]
 

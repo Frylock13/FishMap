@@ -1,7 +1,12 @@
 class ReviewsController < ApplicationController
 
   def create
-    review = Review.new(review_params)
+    if current_user
+      review = current_user.reviews.new(review_params)
+    else
+      review = Review.new(review_params)
+    end
+
     service = Reviews::CreateService.new(review, params[:rating])
     service.call
     flash[:success] = 'Отзыв успешно оставлен'

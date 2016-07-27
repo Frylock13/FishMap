@@ -12,7 +12,7 @@ class PlacesController < ApplicationController
     @place = Place.find(params[:id]).decorate
     @reviews = @place.reviews
     @place.increment!(:visits)
-    @near_places = Place.near([@place.latitude, @place.longitude], 5)
+    @near_places = Place.near([@place.latitude, @place.longitude], 5).includes(:place_images)
   end
 
   def new
@@ -22,7 +22,12 @@ class PlacesController < ApplicationController
   end
 
   def create
-    @place = Place.new(place_params)
+    if current_user
+      @place = current_user.places.new(place_params)
+    else
+      @place = Place.new(place_params)
+    end
+
     @place.save!
     flash[:success] = 'Место отправлено на модерацию'
     redirect_to place_path(@place.id)

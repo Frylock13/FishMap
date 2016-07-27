@@ -5,8 +5,8 @@ class PlaceDecorator < Draper::Decorator
     "#{latitude} #{longitude}"
   end
 
-  def posted_at
+  def posted_info
     author = user_id ? User.find(user_id).name : 'Гость'
-    "#{author} #{created_at.strftime('%d.%m.%Y %H:%M')}"
+    "#{author} (#{created_at.strftime('%d.%m.%Y %H:%M')})"
   end
 end
