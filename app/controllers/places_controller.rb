@@ -10,7 +10,7 @@ class PlacesController < ApplicationController
 
   def show
     @place = Place.find(params[:id]).decorate
-    @reviews = @place.reviews.order(:id)
+    @reviews = @place.reviews.order('id DESC')
     @place.increment!(:visits)
     @near_places = Place.near([@place.latitude, @place.longitude], 5).where(category_id: @place.category_id).where.not(id: @place.id).includes(:place_images)
   end
