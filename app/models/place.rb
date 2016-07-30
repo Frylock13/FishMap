@@ -10,9 +10,9 @@ class Place < ActiveRecord::Base
 
   accepts_nested_attributes_for :place_images, :allow_destroy => true
 
-  geocoded_by :address
+  geocoded_by :id
 
-  validates :title, presence: true
+  validates :title, :category_id, :latitude, :longitude, presence: true
 
   scope :active, -> { where(active: true) }
   scope :not_active, -> { where(active: false) }

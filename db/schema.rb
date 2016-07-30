@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20160730192353) do
+ActiveRecord::Schema.define(version: 20160730205149) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -130,8 +130,6 @@ ActiveRecord::Schema.define(version: 20160730192353) do
   create_table "places", force: :cascade do |t|
     t.string   "title"
     t.integer  "category_id"
-    t.integer  "city_id"
-    t.text     "address"
     t.text     "description"
     t.integer  "visits"
     t.integer  "user_id"
@@ -145,7 +143,6 @@ ActiveRecord::Schema.define(version: 20160730192353) do
   end
 
   add_index "places", ["category_id"], name: "index_places_on_category_id", using: :btree
-  add_index "places", ["city_id"], name: "index_places_on_city_id", using: :btree
 
   create_table "ratings", force: :cascade do |t|
     t.integer  "place_id"
@@ -204,7 +201,6 @@ ActiveRecord::Schema.define(version: 20160730192353) do
   add_foreign_key "cities", "countries"
   add_foreign_key "cities", "regions"
   add_foreign_key "places", "categories"
-  add_foreign_key "places", "cities"
   add_foreign_key "ratings", "places"
   add_foreign_key "regions", "countries"
   add_foreign_key "reviews", "places"
