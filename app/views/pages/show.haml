@@ -1,0 +1,5 @@
+= render partial: 'shared/seo', locals: { page: @page }
+
+.page
+  %h1= @page.title
+  %p= raw(@page.body) 
