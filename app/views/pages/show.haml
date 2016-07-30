@@ -1,4 +1,6 @@
-= render partial: 'shared/seo', locals: { page: @page }
+- content_for :seo_title, @page.seo_title if @page.seo_title
+- content_for :seo_keywords, @page.seo_keywords if @page.seo_keywords
+- content_for :seo_description, @page.seo_description if @page.seo_description
 
 .page
   %h1= @page.title

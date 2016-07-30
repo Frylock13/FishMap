@@ -4,8 +4,8 @@ ActiveAdmin.register Review do
 
   actions :index, :show, :destroy, :edit, :update
 
-  permit_params :title, :category_id, :description, :latitude, :longitude, :active, :created_at
-
+  permit_params :name, :review, :likes, :dislikes
+  
   index do
     column 'Место', :place
     column "Имя", :name
