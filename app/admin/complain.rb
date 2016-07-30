@@ -11,4 +11,10 @@ ActiveAdmin.register Complain do
     column 'Создано', :created_at
     actions 
   end
+
+  controller do
+    def scoped_collection
+      super.includes :complainable
+    end
+  end
 end
