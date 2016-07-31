@@ -26,8 +26,8 @@
     %h4.sub-title Добавить фото
     #place_images
       = f.fields_for :place_images, PlaceImage.new do |image|
-        = link_to_add_association 'Добавить еще одно фото', f, :place_images, data: {:'association-insertion-method' => 'append'}, class: 'btn btn-primary', id: 'add_new_image'
         = render 'place_image_fields', f: image
+        = link_to_add_association 'Добавить еще один файл', f, :place_images, class: 'btn btn-primary', id: 'add_new_image'
 
     %hr/
 
@@ -50,6 +50,12 @@
     .actions
       = f.submit 'Добавить место', class: 'btn btn-success', id: 'create-place-button', disabled: true
 
+:javascript
+  $(document).ready(function() {
+    $("#add_new_image").
+      data("association-insertion-position", 'before').
+      data("association-insertion-node", 'this');
+  });
 
 :javascript
   var currentLatLng = {lat: parseFloat("#{@latitude}"), lng: parseFloat("#{@longitude}")};
@@ -108,22 +114,22 @@
   }
 
 :javascript
-   $(function() {
-     function check_to_hide_or_show_add_link() {
-       if ($('#place_images .nested-fields').length == 3) {
-         $('#place_images #add_new_image').hide();
-       } else {
-         $('#place_images #add_new_image').show();
-       }
-     }
+  $(function() {
+    function check_to_hide_or_show_add_link() {
+      if ($('#place_images .nested-fields').length == 3) {
+        $('#place_images #add_new_image').hide();
+      } else {
+        $('#place_images #add_new_image').show();
+      }
+    }
 
-     $('#place_images').bind('cocoon:after-insert', function() {
-       check_to_hide_or_show_add_link();
-     });
+    $('#place_images').bind('cocoon:after-insert', function() {
+      check_to_hide_or_show_add_link();
+    });
 
-     $('#place_images').bind('cocoon:after-remove', function() {
-       check_to_hide_or_show_add_link();
-     });
+    $('#place_images').bind('cocoon:after-remove', function() {
+      check_to_hide_or_show_add_link();
+    });
 
-     check_to_hide_or_show_add_link();     
-   });
+    check_to_hide_or_show_add_link();     
+  });
