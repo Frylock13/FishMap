@@ -32,3 +32,8 @@
               = link_to new_user_session_path do
                 Войти/Регистрация
                 = fa_icon 'sign-in'
+
+          - @custom_pages.each do |page|
+            - cache page do
+              %li
+                = link_to page.title, "/#{page.slug}"
