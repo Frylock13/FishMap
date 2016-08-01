@@ -24,5 +24,8 @@
             
             .complain
               = link_to 'Пожаловаться', complains_path(id: review.id, type: 'Review'), method: :post
+
+            %br/
+            %hr/
 - else
   %p Нет отзывов

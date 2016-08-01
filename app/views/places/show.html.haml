@@ -73,17 +73,7 @@
       %h2.title Отзывы
 
       = render 'reviews/list'
-
-      - if current_user
-        = render 'reviews/form'
-      - else
-        %br/
-        %p
-          Чтобы оставить отзыв, пожалуйста,
-          = link_to 'авторизуйтесь', new_user_session_path   
-
-
-
+      = render 'reviews/form'
 
 :javascript
 

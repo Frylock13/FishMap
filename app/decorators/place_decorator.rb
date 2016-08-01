@@ -15,10 +15,14 @@ class PlaceDecorator < Draper::Decorator
   end
 
   def get_near_place_background
-    if object.place_images.first.present?
-      h.image_tag(object.place_images.first.image.url(:small), class: 'center')
+    if object.place_images.first.image.present?
+      h.image_tag(object.place_images.first.image.url(:small), class: 'center place-main-image')
     else
-      h.image_tag 'places/near_missing.png', class: 'center'
+      h.capture_haml do
+        h.haml_tag :div, {class: 'image-block'} do
+          h.haml_tag(:image, h.image_tag(object.category.marker_image(:small), class: 'near-marker-image'))
+        end
+      end
     end
   end
 end

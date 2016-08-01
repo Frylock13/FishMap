@@ -3,7 +3,7 @@ class PlacesController < ApplicationController
   before_action :authenticate_user!, only: [:new, :create]
 
   def index
-    @places = Place.where(nil).includes(:category)
+    @places = Place.where(nil).active.includes(:category)
     filtering_params(params).each do |key, value|
       @places = @places.public_send(key, value) if value.present?
     end
