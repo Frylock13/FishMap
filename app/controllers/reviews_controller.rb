@@ -1,5 +1,7 @@
 class ReviewsController < ApplicationController
 
+  before_action :authenticate_user!, only: :create
+
   def create
     if current_user
       review = current_user.reviews.new(review_params)

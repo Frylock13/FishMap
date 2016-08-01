@@ -5,11 +5,11 @@
     %br/
 
     %p Кол-во отзывов >=
-    = text_field_tag :reviews_count, nil, value: "#{params[:reviews_count] || 0}", class: 'form-control', placeholder: '10'
+    = number_field_tag :reviews_count, nil, value: "#{params[:reviews_count] || 0}", class: 'form-control', placeholder: '10'
     %br/
 
     %p Рейтинг >=
-    = text_field_tag :rating, nil, value: "#{params[:rating] || 0}", class: 'form-control', placeholder: '4.9'
+    = number_field_tag :rating, nil, value: "#{params[:rating] || 0}", class: 'form-control', placeholder: '4.9'
     %br/
 
     = submit_tag 'Фильтровать', class: 'btn btn-primary'

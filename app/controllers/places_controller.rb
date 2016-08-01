@@ -1,5 +1,7 @@
 class PlacesController < ApplicationController
 
+  before_action :authenticate_user!, only: [:new, :create]
+
   def index
     @places = Place.where(nil).includes(:category)
     filtering_params(params).each do |key, value|

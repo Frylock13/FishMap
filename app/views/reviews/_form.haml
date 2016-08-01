@@ -1,0 +1,27 @@
+.form
+  %h2.title Добавить свой отзыв
+  = bootstrap_form_for Review.new do |f|
+    - unless current_user
+      = f.text_field :name, label: 'Имя', placeholder: 'Ваше имя', required: true
+
+    = f.text_area :review, label: 'Отзыв', placeholder: 'Ваш отзыв'
+    = f.hidden_field :place_id, value: params[:id]
+
+    %h4 Ваша оценка
+    %fieldset
+    %span.star-cb-group
+      %input#rating-5.rating{:name => "rating", :type => "radio", :value => "5"}/
+      %label{:for => "rating-5"} 5
+      %input#rating-4.rating{:checked => "checked", :name => "rating", :type => "radio", :value => "4"}/
+      %label{:for => "rating-4"} 4
+      %input#rating-3.rating{:name => "rating", :type => "radio", :value => "3"}/
+      %label{:for => "rating-3"} 3
+      %input#rating-2.rating{:name => "rating", :type => "radio", :value => "2"}/
+      %label{:for => "rating-2"} 2
+      %input#rating-1.rating{:name => "rating", :type => "radio", :value => "1"}/
+      %label{:for => "rating-1"} 1
+      %input#rating-0.rating.star-cb-clear{:name => "rating", :type => "radio", :value => "0"}/
+      %label{:for => "rating-0"} 0
+
+    .submit
+      = f.submit 'Отправить отзыв', class: 'btn btn-success'
