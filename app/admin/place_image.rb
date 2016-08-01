@@ -5,6 +5,8 @@ ActiveAdmin.register PlaceImage do
   actions :index, :show, :destroy
 
   index do
+    selectable_column
+    id_column
     column 'Место', :place
     column "Превью" do |image|
       image_tag image.image(:thumb)

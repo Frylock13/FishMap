@@ -7,6 +7,8 @@ ActiveAdmin.register Place do
   permit_params :title, :category_id, :description, :latitude, :longitude, :active, :created_at
 
   index do
+    selectable_column
+    id_column
     column 'Активен', :active
     column 'Заголовок', :title
     column 'Категория', :category

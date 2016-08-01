@@ -7,6 +7,8 @@ ActiveAdmin.register Category do
   permit_params :name, :slug, :marker_image
 
   index do
+    selectable_column
+    id_column
     column "Название", :name
     column "Маркер" do |category|
       image_tag category.marker_image(:small)

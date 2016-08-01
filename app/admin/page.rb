@@ -7,6 +7,8 @@ ActiveAdmin.register Page do
   permit_params :slug, :title, :body, :active, :seo_title, :seo_description, :seo_keywords
 
   index do
+    selectable_column
+    id_column
     column 'Ссылка', :slug
     column 'Заголовок', :title
     column 'Включен в меню', :active

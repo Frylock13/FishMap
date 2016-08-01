@@ -5,9 +5,5 @@ class Page < ActiveRecord::Base
 
   scope :active, -> { where(active: true) }
 
-  after_save :reload_routes
 
-  def reload_routes
-    PageRouter.reload
-  end
 end

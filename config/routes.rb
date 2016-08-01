@@ -17,7 +17,7 @@ Rails.application.routes.draw do
 
   root 'map#index'
 
-  PageRouter.load
+  #PageRouter.load
 
   #resources :countries, only: [:index] do 
   #  resources :regions, only: [:index] do

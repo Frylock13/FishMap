@@ -7,6 +7,8 @@ ActiveAdmin.register Review do
   permit_params :name, :review, :likes, :dislikes
   
   index do
+    selectable_column
+    id_column
     column 'Место', :place
     column "Имя", :name
     column 'Отзыв', :review

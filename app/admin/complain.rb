@@ -6,6 +6,8 @@ ActiveAdmin.register Complain do
   actions :index, :destroy
   
   index do
+    selectable_column
+    id_column
     column 'Объект', :complainable
     column 'Тип', :complainable_type
     column 'Создано', :created_at
