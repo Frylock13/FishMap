@@ -15,10 +15,9 @@ Rails.application.routes.draw do
   resources :complains, only: :create
 
   get '/' => 'map#index', as: 'map'
+  get ':page' => 'pages#show'
 
   root 'map#index'
-
-  #PageRouter.load
 
   #resources :countries, only: [:index] do 
   #  resources :regions, only: [:index] do
