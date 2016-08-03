@@ -6,6 +6,10 @@
     .col-md-6.left-block
       %h1.title= @place.title
       = image_tag "ratings/#{@place.rating.round}.png", class: 'rating'
+      .reviews-count
+        %p 
+          = @place.reviews_count + 1
+          = Russian.p(@place.reviews_count + 1, "оценка", "оценки", "оценок")
       = link_to @place.category.name, '', class: 'category'
       %p.description= @place.description
 
