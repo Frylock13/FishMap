@@ -62,12 +62,11 @@
       - if @near_places.present?
         .near-places.row
           - @near_places.each do |place|
-            - cache place do 
-              .place.col-md-3
-                = place.decorate.get_near_place_background
-                = image_tag "ratings/#{@place.rating.round}.png", class: 'rating center'
-                .name
-                  = link_to place.title, place_path(place.id), class: 'center'
+            .place.col-md-3
+              = place.decorate.get_near_place_background
+              = image_tag "ratings/#{@place.rating.round}.png", class: 'rating center'
+              .name
+                = link_to place.title, place_path(place.id), class: 'center'
 
       - else
         %p Нет похожих мест поблизости 
