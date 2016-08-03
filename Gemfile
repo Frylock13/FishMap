@@ -40,6 +40,7 @@ gem "font-awesome-rails"
 gem 'rack-mini-profiler'
 gem "cocoon"
 gem 'social-share-button', github: 'frylock13/social-share-button'
+gem "recaptcha", require: "recaptcha/rails"
 
 gem 'devise'
 gem 'omniauth'

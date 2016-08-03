@@ -25,6 +25,8 @@
       <%= f.password_field :password_confirmation, label: 'Подтверждение пароля', autocomplete: "off", required: true %>
     </div>
 
+    <%= recaptcha_tags %>
+
     <div class="actions">
       <%= f.submit "Регистрация" %>
     </div>
