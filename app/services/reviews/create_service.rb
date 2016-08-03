@@ -11,9 +11,13 @@ module Reviews
 
     def call
       ActiveRecord::Base.transaction do
-        review.rating = rating
-        review.save!
-        place.update_attribute(:rating, new_rating)
+        if review.valid?
+          review.rating = rating
+          review.save!
+          place.update_attribute(:rating, new_rating)
+        else
+          false
+        end
       end
     end
 

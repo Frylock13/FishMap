@@ -10,14 +10,16 @@ class ReviewsController < ApplicationController
     end
 
     service = Reviews::CreateService.new(review, params[:rating])
-    service.call
-    flash[:success] = 'Отзыв успешно оставлен'
+    if !session[:reviewed].include?(review.place_id) && service.call
+      flash[:success] = 'Отзыв успешно оставлен'
+      session[:reviewed] << review.place_id
+    else
+      flash[:danger] = 'Вы уже оставляли отзыв'
+    end
     redirect_to :back
   end
 
   def like
-    session[:likes] = [] unless session[:likes]
-
     if session[:likes].include?(params[:review_id].to_i)
       flash[:danger] = 'Вы уже оценивали этот отзыв'
     else
@@ -31,8 +33,6 @@ class ReviewsController < ApplicationController
   end
 
   def dislike
-    session[:dislikes] = [] unless session[:dislikes]
-
     if session[:dislikes].include?(params[:review_id].to_i)
       flash[:danger] = 'Вы уже оценивали этот отзыв'
     else

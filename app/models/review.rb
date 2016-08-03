@@ -6,4 +6,6 @@ class Review < ActiveRecord::Base
   has_many :complains, as: :complainable, dependent: :destroy
 
   scope :with_comments, -> { where.not(review: '') }
+
+  validates :place_id, uniqueness: { scope: :user_id }
 end
