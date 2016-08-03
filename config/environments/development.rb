@@ -40,6 +40,17 @@ Rails.application.configure do
     Bullet.alert = true
   end
 
+  config.action_mailer.smtp_settings = {
+   :address              => "smtp.gmail.com",
+   :port                 => 587,
+   :user_name            => "lovemapia.ru@gmail.com",
+   :password             => "009j230dh0h203",
+   :authentication       => "plain",
+   :enable_starttls_auto => true
+  }
+  Rails.application.routes.default_url_options[:host] = 'localhost:3000'
+
+
   # Raises error for missing translations
   # config.action_view.raise_on_missing_translations = true
 end
