@@ -1,6 +1,8 @@
 class PlaceDecorator < Draper::Decorator
   delegate_all
 
+  include Rails.application.routes.url_helpers
+
   def coordinates
     "#{latitude} #{longitude}"
   end
@@ -16,10 +18,12 @@ class PlaceDecorator < Draper::Decorator
 
   def get_near_place_background
     if object.place_images.first.image.present?
-      h.image_tag(object.place_images.first.image.url(:small), class: 'center place-main-image')
+      h.link_to place_path(object.id) do
+        h.image_tag(object.place_images.first.image.url(:small), class: 'center place-main-image')
+      end
     else
-      h.capture_haml do
-        h.haml_tag :div, {class: 'image-block'} do
+      h.content_tag :div, {class: 'image-block'} do
+        h.link_to place_path(object.id) do
           h.haml_tag(:image, h.image_tag(object.category.marker_image(:small), class: 'near-marker-image'))
         end
       end

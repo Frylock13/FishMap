@@ -5,7 +5,7 @@
   .main-info.white-block.row
     .col-md-6.left-block
       %h1.title= @place.title
-      = image_tag "ratings/#{@place.rating.round}.png", class: 'rating'
+      = image_tag "ratings/#{@place.rating.round}.png", class: 'rating-show'
       .reviews-count
         %p 
           = @place.reviews_count + 1
@@ -64,7 +64,7 @@
           - @near_places.each do |place|
             - cache place do 
               .place.col-md-3
-                = place.decorate.get_near_place_background 
+                = place.decorate.get_near_place_background
                 = image_tag "ratings/#{@place.rating.round}.png", class: 'rating center'
                 .name
                   = link_to place.title, place_path(place.id), class: 'center'
