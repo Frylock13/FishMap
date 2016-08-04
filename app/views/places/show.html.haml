@@ -6,7 +6,6 @@
     .col-md-6.left-block
       %h1.title= @place.title
       = image_tag "ratings/#{@place.rating.round}.png", class: 'rating-show'
-      = @place.rating
       .reviews-count
         %p 
           = @place.reviews_count + 1

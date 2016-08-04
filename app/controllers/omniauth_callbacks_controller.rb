@@ -1,6 +1,4 @@
-class CallbacksController < Devise::OmniauthCallbacksController
-  
-  skip_before_filter :authenticate
+class OmniauthCallbacksController < Devise::OmniauthCallbacksController
 
   def facebook
     @user = User.from_omniauth(request.env["omniauth.auth"])
