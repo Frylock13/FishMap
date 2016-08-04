@@ -13,7 +13,7 @@ class PlaceDecorator < Draper::Decorator
   end
 
   def posted_at
-    created_at.localtime.strftime('%d.%m.%Y %H:%M')
+    created_at.strftime('%d.%m.%Y %H:%M')
   end
 
   def get_near_place_background
