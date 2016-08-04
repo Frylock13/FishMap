@@ -17,14 +17,6 @@ GIT
       sass-rails
       sprockets (< 4.1)
 
-GIT
-  remote: git://github.com/frylock13/social-share-button.git
-  revision: 9941341897193f261631aaf9b50e690cd2f7ed07
-  specs:
-    social-share-button (0.3.2)
-      coffee-rails
-      sass-rails
-
 GEM
   remote: https://rubygems.org/
   specs:
@@ -288,6 +280,9 @@ GEM
       json (~> 1.7, >= 1.7.7)
       rdoc (~> 4.0)
     sexp_processor (4.7.0)
+    social-share-button (0.3.1)
+      coffee-rails
+      sass-rails
     spring (1.7.2)
     sprockets (3.6.3)
       concurrent-ruby (~> 1.0)
@@ -355,7 +350,7 @@ DEPENDENCIES
   russian
   sass-rails (~> 5.0)
   sdoc (~> 0.4.0)
-  social-share-button!
+  social-share-button
   spring
   uglifier (>= 1.3.0)
   vkontakte_api (~> 1.4)
