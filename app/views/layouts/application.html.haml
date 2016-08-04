@@ -21,4 +21,8 @@
     = render partial: 'shared/flashes'
 
     .container-fluid
+      - @all_banners.each do |banner|
+        - cache banner do
+          %div{class: "banner #{banner.id}", style: "width: #{banner.width}; height: #{banner.height}; top: #{banner.top}; left: #{banner.left}"}
+            = raw banner.body
       = yield
