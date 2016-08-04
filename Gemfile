@@ -42,6 +42,7 @@ gem "cocoon"
 gem 'social-share-button'
 gem "recaptcha", require: "recaptcha/rails"
 gem 'russian'
+gem "responders"
 
 gem 'devise'
 gem 'omniauth'

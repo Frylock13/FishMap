@@ -344,6 +344,7 @@ DEPENDENCIES
   rails (= 4.2.6)
   rails-observers
   recaptcha
+  responders
   russian
   sass-rails (~> 5.0)
   sdoc (~> 0.4.0)

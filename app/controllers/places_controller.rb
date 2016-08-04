@@ -1,13 +1,14 @@
 class PlacesController < ApplicationController
 
   before_action :authenticate_user!, only: [:new, :create]
+  respond_to :json
 
   def index
     @places = Place.where(nil).active.includes(:category)
     filtering_params(params).each do |key, value|
       @places = @places.public_send(key, value) if value.present?
     end
-    render json: @places
+    respond_with @places
   end
 
   def show

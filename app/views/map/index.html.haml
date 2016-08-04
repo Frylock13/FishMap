@@ -63,7 +63,7 @@
   console.log(url_params);
 
 
-  $.getJSON("/places" + url_params, function(json1) {
+  $.getJSON("/places.json" + url_params, function(json1) {
     $.each(json1, function(key, data) {
       var latLng = new google.maps.LatLng(data.latitude, data.longitude);
 
