@@ -5,6 +5,10 @@ class User < ActiveRecord::Base
          :recoverable, :rememberable, :trackable, :validatable, :omniauthable,
          omniauth_providers: [:facebook, :vkontakte]
 
+  def email_required?
+    false
+  end
+
   validates :name, presence: true
 
   has_many :places, dependent: :destroy

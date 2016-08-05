@@ -21,10 +21,11 @@
               Добавить место
               = fa_icon 'plus-circle'
 
-          - @custom_pages.each do |page|
-            - cache page do
-              %li
-                = link_to page.title, "/#{page.slug}"
+          - if @custom_pages.present?
+            - @custom_pages.each do |page|
+              - cache page do
+                %li
+                  = link_to page.title, "/#{page.slug}"
 
         %ul.nav.navbar-nav.navbar-right
           - if current_user
