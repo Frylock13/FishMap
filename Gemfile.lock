@@ -278,7 +278,7 @@ GEM
       json (~> 1.7, >= 1.7.7)
       rdoc (~> 4.0)
     sexp_processor (4.7.0)
-    social-share-button (0.3.1)
+    social-share-button (0.3.2)
       coffee-rails
       sass-rails
     spring (1.7.2)
