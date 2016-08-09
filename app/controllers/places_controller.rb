@@ -31,6 +31,7 @@ class PlacesController < ApplicationController
       @place = Place.new(place_params)
     end
 
+    @place.active = true if Setting.find_by(key: 'places_moderation').status == false
     @place.save!
     flash[:success] = 'Место отправлено на модерацию'
     redirect_to place_path(@place.id)

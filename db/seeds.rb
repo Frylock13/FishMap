@@ -30,3 +30,6 @@ if Page.count == 0
 end
 
 AdminUser.create!(email: 'admin@example.com', password: 'password', password_confirmation: 'password') if AdminUser.count == 0
+
+Setting.destroy_all
+Setting.create!(key: 'places_moderation', name: 'Премодерация мест', status: true)

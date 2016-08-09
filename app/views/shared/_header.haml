@@ -25,7 +25,7 @@
             - @custom_pages.each do |page|
               - cache page do
                 %li
-                  = link_to page.title, "/#{page.slug}"
+                  = link_to page.title, "/pages/#{page.slug}"
 
         %ul.nav.navbar-nav.navbar-right
           - if current_user

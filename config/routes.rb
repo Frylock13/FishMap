@@ -15,7 +15,7 @@ Rails.application.routes.draw do
   resources :complains, only: :create
 
   get '/' => 'map#index', as: 'map'
-  get ':page' => 'pages#show'
+  get 'pages/:page' => 'pages#show'
 
   root 'map#index'
 
