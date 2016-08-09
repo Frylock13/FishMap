@@ -22,7 +22,7 @@ gem 'jbuilder', '~> 2.0'
 # bundle exec rake doc:rails generates the API under doc/api.
 gem 'sdoc', '~> 0.4.0', group: :doc
 gem 'rails-observers'
-gem "haml-rails", "~> 0.9"
+gem 'haml-rails', '~> 0.9'
 gem 'bootstrap-sass', '~> 3.3.6'
 gem 'bootswatch-rails'
 gem 'quiet_assets'
@@ -36,13 +36,14 @@ gem 'bootstrap_form'
 gem 'activeadmin', github: 'activeadmin'
 gem 'active_model_serializers', '~> 0.10.0'
 gem 'active_admin_theme'
-gem "font-awesome-rails"
+gem 'font-awesome-rails'
+gem 'active_admin_editor', github: 'ejholmes/active_admin_editor'
 #gem 'rack-mini-profiler'
-gem "cocoon"
+gem 'cocoon'
 gem 'social-share-button'
-gem "recaptcha", require: "recaptcha/rails"
+gem 'recaptcha', require: 'recaptcha/rails'
 gem 'russian'
-gem "responders"
+gem 'responders'
 
 gem 'devise'
 gem 'omniauth'
@@ -62,7 +63,7 @@ group :development, :test do
   # Call 'byebug' anywhere in the code to stop execution and get a debugger console
   gem 'byebug'
   gem 'better_errors'
-  gem "bullet"
+  gem 'bullet'
 end
 
 group :development do

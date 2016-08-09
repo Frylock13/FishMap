@@ -20,7 +20,7 @@ ActiveAdmin.register Page do
     f.inputs do
       f.input :slug, label: 'Ссылка'
       f.input :title, label: 'Заголовок'
-      f.input :body, label: 'Тело'
+      f.input :body, label: 'Тело', as: :html_editor
       f.input :active, label: 'Включен в меню'
       f.input :seo_title, label: 'SEO title'
       f.input :seo_description, label: 'SEO description'
