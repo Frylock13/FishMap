@@ -1,5 +1,7 @@
 class PlacesController < ApplicationController
 
+  include Settingable
+
   before_action :authenticate_user!, only: [:new, :create]
   respond_to :json
 
@@ -31,9 +33,15 @@ class PlacesController < ApplicationController
       @place = Place.new(place_params)
     end
 
-    @place.active = true if Setting.find_by(key: 'places_moderation').status == false
+    @place.active = true unless is_places_moderation_on?
     @place.save!
-    flash[:success] = 'Место отправлено на модерацию'
+
+    if is_places_moderation_on?
+      flash[:success] = 'Место отправлено на модерацию'
+    else
+      flash[:success] = 'Место успешно добавлено'
+    end
+
     redirect_to place_path(@place.id)
   end
 
