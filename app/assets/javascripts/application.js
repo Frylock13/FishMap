@@ -16,5 +16,4 @@
 //= require cocoon
 //= require social-share-button
 //= require smooth
-//= require truncate
 //= require_tree .
